@@ -42,8 +42,8 @@ release = '0.2.0'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
-    'sphinx.ext.todo',
-    'hawkmoth'
+    'hawkmoth',
+    'sphinxcontrib.asyncio'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -73,7 +73,6 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
 
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -85,8 +84,12 @@ html_theme = 'alabaster'
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
-
+html_theme_options = {
+    'description': 'Main program for the SIMplePhone Gateway.',
+    'github_button': True,
+    'github_user': 'quentinwendegass',
+    'github_repo': 'Diplomarbeit'
+}
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".

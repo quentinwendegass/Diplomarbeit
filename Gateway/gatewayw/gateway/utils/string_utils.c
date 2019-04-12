@@ -915,6 +915,13 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject
 /* GetBuiltinName.proto */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
 
+/* PyCFunctionFastCall.proto */
+#if CYTHON_FAST_PYCCALL
+static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObject **args, Py_ssize_t nargs);
+#else
+#define __Pyx_PyCFunction_FastCall(func, args, nargs)  (assert(0), NULL)
+#endif
+
 /* PyFunctionFastCall.proto */
 #if CYTHON_FAST_PYCALL
 #define __Pyx_PyFunction_FastCall(func, args, nargs)\
@@ -950,22 +957,15 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg);
 #endif
 
+/* PyObjectCallOneArg.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
+
 /* PyObjectCallNoArg.proto */
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
 #else
 #define __Pyx_PyObject_CallNoArg(func) __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL)
 #endif
-
-/* PyCFunctionFastCall.proto */
-#if CYTHON_FAST_PYCCALL
-static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObject **args, Py_ssize_t nargs);
-#else
-#define __Pyx_PyCFunction_FastCall(func, args, nargs)  (assert(0), NULL)
-#endif
-
-/* PyObjectCallOneArg.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
 
 /* ListAppend.proto */
 #if CYTHON_USE_PYLIST_INTERNALS && CYTHON_ASSUME_SAFE_MACROS
@@ -1194,12 +1194,13 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
 /* Module declarations from 'gateway.utils.string_utils' */
-static PyObject *__pyx_f_7gateway_5utils_12string_utils_split_str(PyObject *, int __pyx_skip_dispatch); /*proto*/
+static PyObject *__pyx_f_7gateway_5utils_12string_utils_split_str_c(PyObject *, int __pyx_skip_dispatch); /*proto*/
 #define __Pyx_MODULE_NAME "gateway.utils.string_utils"
 extern int __pyx_module_is_main_gateway__utils__string_utils;
 int __pyx_module_is_main_gateway__utils__string_utils = 0;
 
 /* Implementation of 'gateway.utils.string_utils' */
+static PyObject *__pyx_builtin_print;
 static PyObject *__pyx_builtin_range;
 static const char __pyx_k_[] = "([\n\r])";
 static const char __pyx_k_g[] = "g";
@@ -1215,6 +1216,7 @@ static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_group[] = "group";
 static const char __pyx_k_match[] = "match";
+static const char __pyx_k_print[] = "print";
 static const char __pyx_k_range[] = "range";
 static const char __pyx_k_regex[] = "regex";
 static const char __pyx_k_start[] = "start";
@@ -1227,7 +1229,7 @@ static const char __pyx_k_compile[] = "compile";
 static const char __pyx_k_finditer[] = "finditer";
 static const char __pyx_k_clear_str[] = "clear_str";
 static const char __pyx_k_delimiter[] = "delimiter";
-static const char __pyx_k_split_str_python[] = "split_str_python";
+static const char __pyx_k_split_str[] = "split_str";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_gateway_utils_string_utils[] = "gateway.utils.string_utils";
 static const char __pyx_k_gateway_utils_string_utils_pyx[] = "gateway/utils/string_utils.pyx";
@@ -1253,17 +1255,18 @@ static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_match;
 static PyObject *__pyx_n_s_name;
+static PyObject *__pyx_n_s_print;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_re;
 static PyObject *__pyx_n_s_regex;
-static PyObject *__pyx_n_s_split_str_python;
+static PyObject *__pyx_n_s_split_str;
 static PyObject *__pyx_n_s_start;
 static PyObject *__pyx_n_s_string;
 static PyObject *__pyx_n_s_sub;
 static PyObject *__pyx_n_s_test;
-static PyObject *__pyx_pf_7gateway_5utils_12string_utils_split_str(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_s); /* proto */
+static PyObject *__pyx_pf_7gateway_5utils_12string_utils_split_str_c(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_s); /* proto */
 static PyObject *__pyx_pf_7gateway_5utils_12string_utils_2clear_str(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_string); /* proto */
-static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_string); /* proto */
+static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_string); /* proto */
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_neg_1;
@@ -1276,13 +1279,13 @@ static PyObject *__pyx_codeobj__9;
 /* "gateway/utils/string_utils.pyx":23
  * 
  * 
- * cpdef split_str(s):             # <<<<<<<<<<<<<<
+ * cpdef split_str_c(s):             # <<<<<<<<<<<<<<
  *     """
  *     Splits the passed str after the colon by comma character.
  */
 
-static PyObject *__pyx_pw_7gateway_5utils_12string_utils_1split_str(PyObject *__pyx_self, PyObject *__pyx_v_s); /*proto*/
-static PyObject *__pyx_f_7gateway_5utils_12string_utils_split_str(PyObject *__pyx_v_s, CYTHON_UNUSED int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_7gateway_5utils_12string_utils_1split_str_c(PyObject *__pyx_self, PyObject *__pyx_v_s); /*proto*/
+static PyObject *__pyx_f_7gateway_5utils_12string_utils_split_str_c(PyObject *__pyx_v_s, CYTHON_UNUSED int __pyx_skip_dispatch) {
   struct args_t *__pyx_v_args_ptr;
   PyObject *__pyx_v_splitted = NULL;
   size_t __pyx_v_i;
@@ -1296,16 +1299,27 @@ static PyObject *__pyx_f_7gateway_5utils_12string_utils_split_str(PyObject *__py
   size_t __pyx_t_6;
   size_t __pyx_t_7;
   int __pyx_t_8;
-  __Pyx_RefNannySetupContext("split_str", 0);
+  __Pyx_RefNannySetupContext("split_str_c", 0);
 
   /* "gateway/utils/string_utils.pyx":31
  *     """
  * 
+ *     print(s)             # <<<<<<<<<<<<<<
+ *     cdef args_t * args_ptr = split_command(s.encode(), 10)
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_v_s); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "gateway/utils/string_utils.pyx":32
+ * 
+ *     print(s)
  *     cdef args_t * args_ptr = split_command(s.encode(), 10)             # <<<<<<<<<<<<<<
  * 
- *     splitted = []
+ *     print(args_ptr.size)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_s, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_s, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -1319,52 +1333,80 @@ static PyObject *__pyx_f_7gateway_5utils_12string_utils_split_str(PyObject *__py
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_AsWritableString(__pyx_t_1); if (unlikely((!__pyx_t_4) && PyErr_Occurred())) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_AsWritableString(__pyx_t_1); if (unlikely((!__pyx_t_4) && PyErr_Occurred())) __PYX_ERR(0, 32, __pyx_L1_error)
   __pyx_v_args_ptr = split_command(__pyx_t_4, 10);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "gateway/utils/string_utils.pyx":33
+  /* "gateway/utils/string_utils.pyx":34
  *     cdef args_t * args_ptr = split_command(s.encode(), 10)
  * 
+ *     print(args_ptr.size)             # <<<<<<<<<<<<<<
+ *     splitted = []
+ *     for i in range(args_ptr.size):
+ */
+  __pyx_t_1 = __Pyx_PyInt_FromSize_t(__pyx_v_args_ptr->size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "gateway/utils/string_utils.pyx":35
+ * 
+ *     print(args_ptr.size)
  *     splitted = []             # <<<<<<<<<<<<<<
  *     for i in range(args_ptr.size):
- *         splitted.append(args_ptr.args[i].decode("utf-8"))
+ *         print(args_ptr.args[i])
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_splitted = ((PyObject*)__pyx_t_1);
-  __pyx_t_1 = 0;
+  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v_splitted = ((PyObject*)__pyx_t_2);
+  __pyx_t_2 = 0;
 
-  /* "gateway/utils/string_utils.pyx":34
- * 
+  /* "gateway/utils/string_utils.pyx":36
+ *     print(args_ptr.size)
  *     splitted = []
  *     for i in range(args_ptr.size):             # <<<<<<<<<<<<<<
+ *         print(args_ptr.args[i])
  *         splitted.append(args_ptr.args[i].decode("utf-8"))
- * 
  */
   __pyx_t_5 = __pyx_v_args_ptr->size;
   __pyx_t_6 = __pyx_t_5;
   for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
     __pyx_v_i = __pyx_t_7;
 
-    /* "gateway/utils/string_utils.pyx":35
+    /* "gateway/utils/string_utils.pyx":37
  *     splitted = []
  *     for i in range(args_ptr.size):
+ *         print(args_ptr.args[i])             # <<<<<<<<<<<<<<
+ *         splitted.append(args_ptr.args[i].decode("utf-8"))
+ * 
+ */
+    __pyx_t_2 = __Pyx_PyBytes_FromString((__pyx_v_args_ptr->args[__pyx_v_i])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "gateway/utils/string_utils.pyx":38
+ *     for i in range(args_ptr.size):
+ *         print(args_ptr.args[i])
  *         splitted.append(args_ptr.args[i].decode("utf-8"))             # <<<<<<<<<<<<<<
  * 
  *     dealloc_args(args_ptr)
  */
     __pyx_t_4 = (__pyx_v_args_ptr->args[__pyx_v_i]);
-    __pyx_t_1 = __Pyx_decode_c_string(__pyx_t_4, 0, strlen(__pyx_t_4), NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_decode_c_string(__pyx_t_4, 0, strlen(__pyx_t_4), NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_splitted, __pyx_t_1); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 35, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_splitted, __pyx_t_1); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 38, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "gateway/utils/string_utils.pyx":37
+  /* "gateway/utils/string_utils.pyx":40
  *         splitted.append(args_ptr.args[i].decode("utf-8"))
  * 
  *     dealloc_args(args_ptr)             # <<<<<<<<<<<<<<
@@ -1373,7 +1415,7 @@ static PyObject *__pyx_f_7gateway_5utils_12string_utils_split_str(PyObject *__py
  */
   dealloc_args(__pyx_v_args_ptr);
 
-  /* "gateway/utils/string_utils.pyx":39
+  /* "gateway/utils/string_utils.pyx":42
  *     dealloc_args(args_ptr)
  * 
  *     return splitted             # <<<<<<<<<<<<<<
@@ -1388,7 +1430,7 @@ static PyObject *__pyx_f_7gateway_5utils_12string_utils_split_str(PyObject *__py
   /* "gateway/utils/string_utils.pyx":23
  * 
  * 
- * cpdef split_str(s):             # <<<<<<<<<<<<<<
+ * cpdef split_str_c(s):             # <<<<<<<<<<<<<<
  *     """
  *     Splits the passed str after the colon by comma character.
  */
@@ -1398,7 +1440,7 @@ static PyObject *__pyx_f_7gateway_5utils_12string_utils_split_str(PyObject *__py
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("gateway.utils.string_utils.split_str", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("gateway.utils.string_utils.split_str_c", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_splitted);
@@ -1408,26 +1450,26 @@ static PyObject *__pyx_f_7gateway_5utils_12string_utils_split_str(PyObject *__py
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7gateway_5utils_12string_utils_1split_str(PyObject *__pyx_self, PyObject *__pyx_v_s); /*proto*/
-static char __pyx_doc_7gateway_5utils_12string_utils_split_str[] = "\n    Splits the passed str after the colon by comma character.\n\n    :param s: string that should be split\n    :return: array of strings\n    ";
-static PyObject *__pyx_pw_7gateway_5utils_12string_utils_1split_str(PyObject *__pyx_self, PyObject *__pyx_v_s) {
+static PyObject *__pyx_pw_7gateway_5utils_12string_utils_1split_str_c(PyObject *__pyx_self, PyObject *__pyx_v_s); /*proto*/
+static char __pyx_doc_7gateway_5utils_12string_utils_split_str_c[] = "\n    Splits the passed str after the colon by comma character.\n\n    :param s: string that should be split\n    :return: array of strings\n    ";
+static PyObject *__pyx_pw_7gateway_5utils_12string_utils_1split_str_c(PyObject *__pyx_self, PyObject *__pyx_v_s) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("split_str (wrapper)", 0);
-  __pyx_r = __pyx_pf_7gateway_5utils_12string_utils_split_str(__pyx_self, ((PyObject *)__pyx_v_s));
+  __Pyx_RefNannySetupContext("split_str_c (wrapper)", 0);
+  __pyx_r = __pyx_pf_7gateway_5utils_12string_utils_split_str_c(__pyx_self, ((PyObject *)__pyx_v_s));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7gateway_5utils_12string_utils_split_str(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_s) {
+static PyObject *__pyx_pf_7gateway_5utils_12string_utils_split_str_c(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_s) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("split_str", 0);
+  __Pyx_RefNannySetupContext("split_str_c", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_7gateway_5utils_12string_utils_split_str(__pyx_v_s, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_7gateway_5utils_12string_utils_split_str_c(__pyx_v_s, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -1436,7 +1478,7 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_split_str(CYTHON_UNUSED
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("gateway.utils.string_utils.split_str", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("gateway.utils.string_utils.split_str_c", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -1444,7 +1486,7 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_split_str(CYTHON_UNUSED
   return __pyx_r;
 }
 
-/* "gateway/utils/string_utils.pyx":42
+/* "gateway/utils/string_utils.pyx":45
  * 
  * 
  * def clear_str(string):             # <<<<<<<<<<<<<<
@@ -1477,7 +1519,7 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_2clear_str(CYTHON_UNUSE
   PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("clear_str", 0);
 
-  /* "gateway/utils/string_utils.pyx":52
+  /* "gateway/utils/string_utils.pyx":55
  *     """
  * 
  *     return re.sub('([\n\r])', '', string)             # <<<<<<<<<<<<<<
@@ -1485,9 +1527,9 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_2clear_str(CYTHON_UNUSE
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_re); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_re); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_sub); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_sub); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -1505,7 +1547,7 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_2clear_str(CYTHON_UNUSE
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_2, __pyx_kp_u_, __pyx_kp_u__2, __pyx_v_string};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_4, 3+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_4, 3+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
@@ -1513,13 +1555,13 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_2clear_str(CYTHON_UNUSE
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_2, __pyx_kp_u_, __pyx_kp_u__2, __pyx_v_string};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_4, 3+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_4, 3+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   {
-    __pyx_t_5 = PyTuple_New(3+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(3+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 55, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_2) {
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __pyx_t_2 = NULL;
@@ -1533,7 +1575,7 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_2clear_str(CYTHON_UNUSE
     __Pyx_INCREF(__pyx_v_string);
     __Pyx_GIVEREF(__pyx_v_string);
     PyTuple_SET_ITEM(__pyx_t_5, 2+__pyx_t_4, __pyx_v_string);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
@@ -1542,7 +1584,7 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_2clear_str(CYTHON_UNUSE
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "gateway/utils/string_utils.pyx":42
+  /* "gateway/utils/string_utils.pyx":45
  * 
  * 
  * def clear_str(string):             # <<<<<<<<<<<<<<
@@ -1564,30 +1606,30 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_2clear_str(CYTHON_UNUSE
   return __pyx_r;
 }
 
-/* "gateway/utils/string_utils.pyx":57
+/* "gateway/utils/string_utils.pyx":60
  * regex = re.compile(r"\\.|[\"',]", re.DOTALL)
  * 
- * def split_str_python(string):             # <<<<<<<<<<<<<<
+ * def split_str(string):             # <<<<<<<<<<<<<<
  *     """
  *     Splits the passed str after semicolon and ignores it in double quotes.
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7gateway_5utils_12string_utils_5split_str_python(PyObject *__pyx_self, PyObject *__pyx_v_string); /*proto*/
-static char __pyx_doc_7gateway_5utils_12string_utils_4split_str_python[] = "\n    Splits the passed str after semicolon and ignores it in double quotes.\n    This function is depreciated! Please use the c implementation split_str().\n\n    :param string: string that should be split\n    :return: array of strings\n    ";
-static PyMethodDef __pyx_mdef_7gateway_5utils_12string_utils_5split_str_python = {"split_str_python", (PyCFunction)__pyx_pw_7gateway_5utils_12string_utils_5split_str_python, METH_O, __pyx_doc_7gateway_5utils_12string_utils_4split_str_python};
-static PyObject *__pyx_pw_7gateway_5utils_12string_utils_5split_str_python(PyObject *__pyx_self, PyObject *__pyx_v_string) {
+static PyObject *__pyx_pw_7gateway_5utils_12string_utils_5split_str(PyObject *__pyx_self, PyObject *__pyx_v_string); /*proto*/
+static char __pyx_doc_7gateway_5utils_12string_utils_4split_str[] = "\n    Splits the passed str after semicolon and ignores it in double quotes.\n    This function is depreciated! Please use the c implementation split_str().\n\n    :param string: string that should be split\n    :return: array of strings\n    ";
+static PyMethodDef __pyx_mdef_7gateway_5utils_12string_utils_5split_str = {"split_str", (PyCFunction)__pyx_pw_7gateway_5utils_12string_utils_5split_str, METH_O, __pyx_doc_7gateway_5utils_12string_utils_4split_str};
+static PyObject *__pyx_pw_7gateway_5utils_12string_utils_5split_str(PyObject *__pyx_self, PyObject *__pyx_v_string) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("split_str_python (wrapper)", 0);
-  __pyx_r = __pyx_pf_7gateway_5utils_12string_utils_4split_str_python(__pyx_self, ((PyObject *)__pyx_v_string));
+  __Pyx_RefNannySetupContext("split_str (wrapper)", 0);
+  __pyx_r = __pyx_pf_7gateway_5utils_12string_utils_4split_str(__pyx_self, ((PyObject *)__pyx_v_string));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_string) {
+static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_string) {
   PyObject *__pyx_v_delimiter = NULL;
   PyObject *__pyx_v_compos = NULL;
   PyObject *__pyx_v_match = NULL;
@@ -1607,9 +1649,9 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
   Py_ssize_t __pyx_t_10;
   Py_ssize_t __pyx_t_11;
   Py_ssize_t __pyx_t_12;
-  __Pyx_RefNannySetupContext("split_str_python", 0);
+  __Pyx_RefNannySetupContext("split_str", 0);
 
-  /* "gateway/utils/string_utils.pyx":66
+  /* "gateway/utils/string_utils.pyx":69
  *     """
  * 
  *     delimiter = ''             # <<<<<<<<<<<<<<
@@ -1619,14 +1661,14 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
   __Pyx_INCREF(__pyx_kp_u__2);
   __pyx_v_delimiter = __pyx_kp_u__2;
 
-  /* "gateway/utils/string_utils.pyx":67
+  /* "gateway/utils/string_utils.pyx":70
  * 
  *     delimiter = ''
  *     compos = [-1]             # <<<<<<<<<<<<<<
  *     for match in regex.finditer(string):
  *         g = match.group(0)
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_int_neg_1);
   __Pyx_GIVEREF(__pyx_int_neg_1);
@@ -1634,16 +1676,16 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
   __pyx_v_compos = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "gateway/utils/string_utils.pyx":68
+  /* "gateway/utils/string_utils.pyx":71
  *     delimiter = ''
  *     compos = [-1]
  *     for match in regex.finditer(string):             # <<<<<<<<<<<<<<
  *         g = match.group(0)
  *         if delimiter == '':
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_regex); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_regex); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_finditer); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_finditer); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -1658,16 +1700,16 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_v_string) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_string);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
     __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
+    __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 71, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 68, __pyx_L1_error)
+    __pyx_t_5 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 71, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -1675,17 +1717,17 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 68, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 71, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 68, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 71, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -1695,7 +1737,7 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 68, __pyx_L1_error)
+          else __PYX_ERR(0, 71, __pyx_L1_error)
         }
         break;
       }
@@ -1704,14 +1746,14 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
     __Pyx_XDECREF_SET(__pyx_v_match, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "gateway/utils/string_utils.pyx":69
+    /* "gateway/utils/string_utils.pyx":72
  *     compos = [-1]
  *     for match in regex.finditer(string):
  *         g = match.group(0)             # <<<<<<<<<<<<<<
  *         if delimiter == '':
  *             if g == ',':
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_match, __pyx_n_s_group); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_match, __pyx_n_s_group); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -1725,40 +1767,40 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
     }
     __pyx_t_1 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_6, __pyx_int_0) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_int_0);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_XDECREF_SET(__pyx_v_g, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "gateway/utils/string_utils.pyx":70
+    /* "gateway/utils/string_utils.pyx":73
  *     for match in regex.finditer(string):
  *         g = match.group(0)
  *         if delimiter == '':             # <<<<<<<<<<<<<<
  *             if g == ',':
  *                 compos.append(match.start())
  */
-    __pyx_t_7 = (__Pyx_PyUnicode_Equals(__pyx_v_delimiter, __pyx_kp_u__2, Py_EQ)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __pyx_t_7 = (__Pyx_PyUnicode_Equals(__pyx_v_delimiter, __pyx_kp_u__2, Py_EQ)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 73, __pyx_L1_error)
     if (__pyx_t_7) {
 
-      /* "gateway/utils/string_utils.pyx":71
+      /* "gateway/utils/string_utils.pyx":74
  *         g = match.group(0)
  *         if delimiter == '':
  *             if g == ',':             # <<<<<<<<<<<<<<
  *                 compos.append(match.start())
  *             elif g in "\"'":
  */
-      __pyx_t_7 = (__Pyx_PyUnicode_Equals(__pyx_v_g, __pyx_kp_u__3, Py_EQ)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 71, __pyx_L1_error)
+      __pyx_t_7 = (__Pyx_PyUnicode_Equals(__pyx_v_g, __pyx_kp_u__3, Py_EQ)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 74, __pyx_L1_error)
       if (__pyx_t_7) {
 
-        /* "gateway/utils/string_utils.pyx":72
+        /* "gateway/utils/string_utils.pyx":75
  *         if delimiter == '':
  *             if g == ',':
  *                 compos.append(match.start())             # <<<<<<<<<<<<<<
  *             elif g in "\"'":
  *                 delimiter = g
  */
-        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_match, __pyx_n_s_start); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_match, __pyx_n_s_start); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __pyx_t_6 = NULL;
         if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -1772,13 +1814,13 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
         }
         __pyx_t_1 = (__pyx_t_6) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_6) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_compos, __pyx_t_1); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 72, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_compos, __pyx_t_1); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 75, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-        /* "gateway/utils/string_utils.pyx":71
+        /* "gateway/utils/string_utils.pyx":74
  *         g = match.group(0)
  *         if delimiter == '':
  *             if g == ',':             # <<<<<<<<<<<<<<
@@ -1788,18 +1830,18 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
         goto __pyx_L6;
       }
 
-      /* "gateway/utils/string_utils.pyx":73
+      /* "gateway/utils/string_utils.pyx":76
  *             if g == ',':
  *                 compos.append(match.start())
  *             elif g in "\"'":             # <<<<<<<<<<<<<<
  *                 delimiter = g
  *         elif g == delimiter:
  */
-      __pyx_t_7 = (__Pyx_PyUnicode_ContainsTF(__pyx_v_g, __pyx_kp_u__4, Py_EQ)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 73, __pyx_L1_error)
+      __pyx_t_7 = (__Pyx_PyUnicode_ContainsTF(__pyx_v_g, __pyx_kp_u__4, Py_EQ)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 76, __pyx_L1_error)
       __pyx_t_9 = (__pyx_t_7 != 0);
       if (__pyx_t_9) {
 
-        /* "gateway/utils/string_utils.pyx":74
+        /* "gateway/utils/string_utils.pyx":77
  *                 compos.append(match.start())
  *             elif g in "\"'":
  *                 delimiter = g             # <<<<<<<<<<<<<<
@@ -1809,7 +1851,7 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
         __Pyx_INCREF(__pyx_v_g);
         __Pyx_DECREF_SET(__pyx_v_delimiter, __pyx_v_g);
 
-        /* "gateway/utils/string_utils.pyx":73
+        /* "gateway/utils/string_utils.pyx":76
  *             if g == ',':
  *                 compos.append(match.start())
  *             elif g in "\"'":             # <<<<<<<<<<<<<<
@@ -1819,7 +1861,7 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
       }
       __pyx_L6:;
 
-      /* "gateway/utils/string_utils.pyx":70
+      /* "gateway/utils/string_utils.pyx":73
  *     for match in regex.finditer(string):
  *         g = match.group(0)
  *         if delimiter == '':             # <<<<<<<<<<<<<<
@@ -1829,19 +1871,19 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
       goto __pyx_L5;
     }
 
-    /* "gateway/utils/string_utils.pyx":75
+    /* "gateway/utils/string_utils.pyx":78
  *             elif g in "\"'":
  *                 delimiter = g
  *         elif g == delimiter:             # <<<<<<<<<<<<<<
  *             delimiter = ''
  *     # uncomment the next line to catch errors
  */
-    __pyx_t_1 = PyObject_RichCompare(__pyx_v_g, __pyx_v_delimiter, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 75, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(__pyx_v_g, __pyx_v_delimiter, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 78, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_9) {
 
-      /* "gateway/utils/string_utils.pyx":76
+      /* "gateway/utils/string_utils.pyx":79
  *                 delimiter = g
  *         elif g == delimiter:
  *             delimiter = ''             # <<<<<<<<<<<<<<
@@ -1851,7 +1893,7 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
       __Pyx_INCREF(__pyx_kp_u__2);
       __Pyx_DECREF_SET(__pyx_v_delimiter, __pyx_kp_u__2);
 
-      /* "gateway/utils/string_utils.pyx":75
+      /* "gateway/utils/string_utils.pyx":78
  *             elif g in "\"'":
  *                 delimiter = g
  *         elif g == delimiter:             # <<<<<<<<<<<<<<
@@ -1861,7 +1903,7 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
     }
     __pyx_L5:;
 
-    /* "gateway/utils/string_utils.pyx":68
+    /* "gateway/utils/string_utils.pyx":71
  *     delimiter = ''
  *     compos = [-1]
  *     for match in regex.finditer(string):             # <<<<<<<<<<<<<<
@@ -1871,20 +1913,20 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "gateway/utils/string_utils.pyx":79
+  /* "gateway/utils/string_utils.pyx":82
  *     # uncomment the next line to catch errors
  *     # if delimiter: raise ValueError("Unterminated string in data")
  *     compos.append(len(string))             # <<<<<<<<<<<<<<
  *     return [string[compos[i] + 1:compos[i + 1]] for i in range(len(compos) - 1)]
  * 
  */
-  __pyx_t_4 = PyObject_Length(__pyx_v_string); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 79, __pyx_L1_error)
-  __pyx_t_3 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_4 = PyObject_Length(__pyx_v_string); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_3 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_compos, __pyx_t_3); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_compos, __pyx_t_3); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "gateway/utils/string_utils.pyx":80
+  /* "gateway/utils/string_utils.pyx":83
  *     # if delimiter: raise ValueError("Unterminated string in data")
  *     compos.append(len(string))
  *     return [string[compos[i] + 1:compos[i + 1]] for i in range(len(compos) - 1)]             # <<<<<<<<<<<<<<
@@ -1892,26 +1934,26 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
  */
   __Pyx_XDECREF(__pyx_r);
   { /* enter inner scope */
-    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 80, __pyx_L1_error)
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 83, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyList_GET_SIZE(__pyx_v_compos); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 80, __pyx_L1_error)
+    __pyx_t_4 = PyList_GET_SIZE(__pyx_v_compos); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 83, __pyx_L1_error)
     __pyx_t_10 = (__pyx_t_4 - 1);
     __pyx_t_4 = __pyx_t_10;
     for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_4; __pyx_t_11+=1) {
       __pyx_7genexpr__pyx_v_i = __pyx_t_11;
-      __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_compos, __pyx_7genexpr__pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_compos, __pyx_7genexpr__pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_12 = (__pyx_7genexpr__pyx_v_i + 1);
-      __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_compos, __pyx_t_12, Py_ssize_t, 1, PyInt_FromSsize_t, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_compos, __pyx_t_12, Py_ssize_t, 1, PyInt_FromSsize_t, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_6 = __Pyx_PyObject_GetSlice(__pyx_v_string, 0, 0, &__pyx_t_2, &__pyx_t_1, NULL, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 80, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_GetSlice(__pyx_v_string, 0, 0, &__pyx_t_2, &__pyx_t_1, NULL, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 83, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_6))) __PYX_ERR(0, 80, __pyx_L1_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_6))) __PYX_ERR(0, 83, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
   } /* exit inner scope */
@@ -1919,10 +1961,10 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "gateway/utils/string_utils.pyx":57
+  /* "gateway/utils/string_utils.pyx":60
  * regex = re.compile(r"\\.|[\"',]", re.DOTALL)
  * 
- * def split_str_python(string):             # <<<<<<<<<<<<<<
+ * def split_str(string):             # <<<<<<<<<<<<<<
  *     """
  *     Splits the passed str after semicolon and ignores it in double quotes.
  */
@@ -1933,7 +1975,7 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("gateway.utils.string_utils.split_str_python", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("gateway.utils.string_utils.split_str", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_delimiter);
@@ -1946,7 +1988,7 @@ static PyObject *__pyx_pf_7gateway_5utils_12string_utils_4split_str_python(CYTHO
 }
 
 static PyMethodDef __pyx_methods[] = {
-  {"split_str", (PyCFunction)__pyx_pw_7gateway_5utils_12string_utils_1split_str, METH_O, __pyx_doc_7gateway_5utils_12string_utils_split_str},
+  {"split_str_c", (PyCFunction)__pyx_pw_7gateway_5utils_12string_utils_1split_str_c, METH_O, __pyx_doc_7gateway_5utils_12string_utils_split_str_c},
   {0, 0, 0, 0}
 };
 
@@ -2014,10 +2056,11 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_match, __pyx_k_match, sizeof(__pyx_k_match), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
+  {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_re, __pyx_k_re, sizeof(__pyx_k_re), 0, 0, 1, 1},
   {&__pyx_n_s_regex, __pyx_k_regex, sizeof(__pyx_k_regex), 0, 0, 1, 1},
-  {&__pyx_n_s_split_str_python, __pyx_k_split_str_python, sizeof(__pyx_k_split_str_python), 0, 0, 1, 1},
+  {&__pyx_n_s_split_str, __pyx_k_split_str, sizeof(__pyx_k_split_str), 0, 0, 1, 1},
   {&__pyx_n_s_start, __pyx_k_start, sizeof(__pyx_k_start), 0, 0, 1, 1},
   {&__pyx_n_s_string, __pyx_k_string, sizeof(__pyx_k_string), 0, 0, 1, 1},
   {&__pyx_n_s_sub, __pyx_k_sub, sizeof(__pyx_k_sub), 0, 0, 1, 1},
@@ -2025,7 +2068,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 36, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -2035,29 +2079,29 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "gateway/utils/string_utils.pyx":42
+  /* "gateway/utils/string_utils.pyx":45
  * 
  * 
  * def clear_str(string):             # <<<<<<<<<<<<<<
  *     """
  *     Removes carriage return and new line character from the string.
  */
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_n_s_string); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_n_s_string); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
-  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_gateway_utils_string_utils_pyx, __pyx_n_s_clear_str, 42, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_gateway_utils_string_utils_pyx, __pyx_n_s_clear_str, 45, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 45, __pyx_L1_error)
 
-  /* "gateway/utils/string_utils.pyx":57
+  /* "gateway/utils/string_utils.pyx":60
  * regex = re.compile(r"\\.|[\"',]", re.DOTALL)
  * 
- * def split_str_python(string):             # <<<<<<<<<<<<<<
+ * def split_str(string):             # <<<<<<<<<<<<<<
  *     """
  *     Splits the passed str after semicolon and ignores it in double quotes.
  */
-  __pyx_tuple__8 = PyTuple_Pack(6, __pyx_n_s_string, __pyx_n_s_delimiter, __pyx_n_s_compos, __pyx_n_s_match, __pyx_n_s_g, __pyx_n_s_i); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(6, __pyx_n_s_string, __pyx_n_s_delimiter, __pyx_n_s_compos, __pyx_n_s_match, __pyx_n_s_g, __pyx_n_s_i); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(1, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_gateway_utils_string_utils_pyx, __pyx_n_s_split_str_python, 57, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(1, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_gateway_utils_string_utils_pyx, __pyx_n_s_split_str, 60, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -2351,36 +2395,36 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_re, __pyx_t_1) < 0) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "gateway/utils/string_utils.pyx":42
+  /* "gateway/utils/string_utils.pyx":45
  * 
  * 
  * def clear_str(string):             # <<<<<<<<<<<<<<
  *     """
  *     Removes carriage return and new line character from the string.
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7gateway_5utils_12string_utils_3clear_str, NULL, __pyx_n_s_gateway_utils_string_utils); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7gateway_5utils_12string_utils_3clear_str, NULL, __pyx_n_s_gateway_utils_string_utils); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_clear_str, __pyx_t_1) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_clear_str, __pyx_t_1) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "gateway/utils/string_utils.pyx":55
+  /* "gateway/utils/string_utils.pyx":58
  * 
  * 
  * regex = re.compile(r"\\.|[\"',]", re.DOTALL)             # <<<<<<<<<<<<<<
  * 
- * def split_str_python(string):
+ * def split_str(string):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_re); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_re); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_compile); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_compile); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_re); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_re); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_DOTALL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_DOTALL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_kp_u__7);
   __Pyx_GIVEREF(__pyx_kp_u__7);
@@ -2388,23 +2432,23 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_3);
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_regex, __pyx_t_3) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_regex, __pyx_t_3) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "gateway/utils/string_utils.pyx":57
+  /* "gateway/utils/string_utils.pyx":60
  * regex = re.compile(r"\\.|[\"',]", re.DOTALL)
  * 
- * def split_str_python(string):             # <<<<<<<<<<<<<<
+ * def split_str(string):             # <<<<<<<<<<<<<<
  *     """
  *     Splits the passed str after semicolon and ignores it in double quotes.
  */
-  __pyx_t_3 = PyCFunction_NewEx(&__pyx_mdef_7gateway_5utils_12string_utils_5split_str_python, NULL, __pyx_n_s_gateway_utils_string_utils); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_3 = PyCFunction_NewEx(&__pyx_mdef_7gateway_5utils_12string_utils_5split_str, NULL, __pyx_n_s_gateway_utils_string_utils); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_split_str_python, __pyx_t_3) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_split_str, __pyx_t_3) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "gateway/utils/string_utils.pyx":1
@@ -2488,6 +2532,29 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
     }
     return result;
 }
+
+/* PyCFunctionFastCall */
+#if CYTHON_FAST_PYCCALL
+static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, PyObject **args, Py_ssize_t nargs) {
+    PyCFunctionObject *func = (PyCFunctionObject*)func_obj;
+    PyCFunction meth = PyCFunction_GET_FUNCTION(func);
+    PyObject *self = PyCFunction_GET_SELF(func);
+    int flags = PyCFunction_GET_FLAGS(func);
+    assert(PyCFunction_Check(func));
+    assert(METH_FASTCALL == (flags & ~(METH_CLASS | METH_STATIC | METH_COEXIST | METH_KEYWORDS | METH_STACKLESS)));
+    assert(nargs >= 0);
+    assert(nargs == 0 || args != NULL);
+    /* _PyCFunction_FastCallDict() must not be called with an exception set,
+       because it may clear it (directly or indirectly) and so the
+       caller loses its exception */
+    assert(!PyErr_Occurred());
+    if ((PY_VERSION_HEX < 0x030700A0) || unlikely(flags & METH_KEYWORDS)) {
+        return (*((__Pyx_PyCFunctionFastWithKeywords)(void*)meth)) (self, args, nargs, NULL);
+    } else {
+        return (*((__Pyx_PyCFunctionFast)(void*)meth)) (self, args, nargs);
+    }
+}
+#endif
 
 /* PyFunctionFastCall */
 #if CYTHON_FAST_PYCALL
@@ -2648,51 +2715,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject
 }
 #endif
 
-/* PyObjectCallNoArg */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
-#if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(func)) {
-        return __Pyx_PyFunction_FastCall(func, NULL, 0);
-    }
-#endif
-#ifdef __Pyx_CyFunction_USED
-    if (likely(PyCFunction_Check(func) || __Pyx_CyFunction_Check(func)))
-#else
-    if (likely(PyCFunction_Check(func)))
-#endif
-    {
-        if (likely(PyCFunction_GET_FLAGS(func) & METH_NOARGS)) {
-            return __Pyx_PyObject_CallMethO(func, NULL);
-        }
-    }
-    return __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL);
-}
-#endif
-
-/* PyCFunctionFastCall */
-#if CYTHON_FAST_PYCCALL
-static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, PyObject **args, Py_ssize_t nargs) {
-    PyCFunctionObject *func = (PyCFunctionObject*)func_obj;
-    PyCFunction meth = PyCFunction_GET_FUNCTION(func);
-    PyObject *self = PyCFunction_GET_SELF(func);
-    int flags = PyCFunction_GET_FLAGS(func);
-    assert(PyCFunction_Check(func));
-    assert(METH_FASTCALL == (flags & ~(METH_CLASS | METH_STATIC | METH_COEXIST | METH_KEYWORDS | METH_STACKLESS)));
-    assert(nargs >= 0);
-    assert(nargs == 0 || args != NULL);
-    /* _PyCFunction_FastCallDict() must not be called with an exception set,
-       because it may clear it (directly or indirectly) and so the
-       caller loses its exception */
-    assert(!PyErr_Occurred());
-    if ((PY_VERSION_HEX < 0x030700A0) || unlikely(flags & METH_KEYWORDS)) {
-        return (*((__Pyx_PyCFunctionFastWithKeywords)(void*)meth)) (self, args, nargs, NULL);
-    } else {
-        return (*((__Pyx_PyCFunctionFast)(void*)meth)) (self, args, nargs);
-    }
-}
-#endif
-
 /* PyObjectCallOneArg */
 #if CYTHON_COMPILING_IN_CPYTHON
 static PyObject* __Pyx__PyObject_CallOneArg(PyObject *func, PyObject *arg) {
@@ -2730,6 +2752,28 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObjec
     result = __Pyx_PyObject_Call(func, args, NULL);
     Py_DECREF(args);
     return result;
+}
+#endif
+
+/* PyObjectCallNoArg */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
+#if CYTHON_FAST_PYCALL
+    if (PyFunction_Check(func)) {
+        return __Pyx_PyFunction_FastCall(func, NULL, 0);
+    }
+#endif
+#ifdef __Pyx_CyFunction_USED
+    if (likely(PyCFunction_Check(func) || __Pyx_CyFunction_Check(func)))
+#else
+    if (likely(PyCFunction_Check(func)))
+#endif
+    {
+        if (likely(PyCFunction_GET_FLAGS(func) & METH_NOARGS)) {
+            return __Pyx_PyObject_CallMethO(func, NULL);
+        }
+    }
+    return __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL);
 }
 #endif
 

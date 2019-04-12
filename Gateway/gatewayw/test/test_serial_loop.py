@@ -163,6 +163,17 @@ def test_emit_serial_event(serial_mock, emitter_mock):
     emitter_mock.emit.assert_not_called()
 
 
+def test_emit_serial_event_caller_identification(serial_mock, emitter_mock):
+    serial_mock.readline.side_effect = [b'+CLIP: "+4366611199",129']
+    serialloop = SerialLoop(emitter_mock, serial_mock, False)
+    serialloop.caller_identification = True
+
+    emitted = serialloop._emit_serial_event('RING')
+
+    assert emitted
+    emitter_mock.emit.assert_called_once_with('ring', '+4366611199')
+
+
 def test_read(serial_mock, emitter_mock):
     data = b'Test'
     serialloop = SerialLoop(emitter_mock, serial_mock, False)

@@ -2,6 +2,10 @@ from enum import IntEnum, Enum
 
 import attr
 
+#
+# TODO: Typecheck attributes
+#
+
 
 class ATResponse:
     pass
@@ -134,3 +138,17 @@ class SubscriberNumber(ATResponse):
     alpha = attr.ib(default=None)
     speed = attr.ib(default=None)
     service = attr.ib(default=None)
+
+
+@attr.s
+class CallerIdentification(ATResponse):
+    """
+    Data class for caller identification (AT+CLIP)
+    """
+
+    number = attr.ib()
+    type = attr.ib()
+    subaddr = attr.ib(default=None)
+    satype = attr.ib(default=None)
+    alphaId = attr.ib(default=None)
+    cli_validity = attr.ib(default=None)

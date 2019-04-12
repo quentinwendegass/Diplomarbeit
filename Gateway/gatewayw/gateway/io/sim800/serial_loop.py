@@ -3,6 +3,7 @@ from queue import Queue
 from threading import Thread
 
 from gateway.utils import clear_str, logger
+from gateway.io.sim800.at_parser import CallerIdentificationParser
 
 
 class SerialError(Exception):
@@ -142,8 +143,10 @@ class SerialLoop(Thread):
             logger.debug('Sim800', 'Processing ring event...')
             number = None
 
-            # if self.caller_identification:
-            #     number = parser.CallerIdentificationParser.parse([self._read()])
+            if self.caller_identification:
+                data = self._read()
+                caller_identification = CallerIdentificationParser.parse([data.decode('utf-8')])
+                number = caller_identification.number
 
             # Emit the ring event
             self.emitter.emit('ring', number)

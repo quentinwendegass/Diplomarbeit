@@ -299,7 +299,7 @@ class Sim800(EventEmitter):
         :return: event
         """
 
-        return await self.write(ATCommand('AT+CNUM\r\n', name='SubscriberNumber'))
+        return await self.write(ATCommand('AT+CNUM\r\n', name='SubscriberNumber', parser=SubscriberNumberParser))
 
     async def request_imsi(self):
         """

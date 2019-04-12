@@ -20,7 +20,7 @@ cdef extern from "../../lib/stringlib/stringlib.h":
     void dealloc_args(args_t * args)
 
 
-cpdef split_str(s):
+cpdef split_str_c(s):
     """
     Splits the passed str after the colon by comma character.
 
@@ -28,10 +28,13 @@ cpdef split_str(s):
     :return: array of strings
     """
 
+    print(s)
     cdef args_t * args_ptr = split_command(s.encode(), 10)
 
+    print(args_ptr.size)
     splitted = []
     for i in range(args_ptr.size):
+        print(args_ptr.args[i])
         splitted.append(args_ptr.args[i].decode("utf-8"))
 
     dealloc_args(args_ptr)
@@ -54,7 +57,7 @@ def clear_str(string):
 
 regex = re.compile(r"\\.|[\"',]", re.DOTALL)
 
-def split_str_python(string):
+def split_str(string):
     """
     Splits the passed str after semicolon and ignores it in double quotes.
     This function is depreciated! Please use the c implementation split_str().

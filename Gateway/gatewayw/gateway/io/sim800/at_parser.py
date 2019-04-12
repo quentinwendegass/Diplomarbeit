@@ -3,7 +3,11 @@ from datetime import datetime
 
 import gateway.utils as utils
 from gateway.io.sim800.at_response import *
-from gateway.core.config import get_config
+from gateway.core.config import get_apn_config_path
+
+
+class ParseError(Exception):  # TODO: Raise error on failure
+    pass
 
 
 class ATParser:
@@ -71,7 +75,7 @@ class NetworkStatusParser(ATParser):
     def parse(content):
         data = utils.split_str(content[0][content[0].index(':') + 1:])
 
-        status = NetworkStatus(data[0].strip(), int(data[1]))
+        status = NetworkStatus(int(data[0].strip()), int(data[1]))
 
         if len(data) == 4:
             status.lac = data[2][1:-1]
@@ -88,7 +92,7 @@ class SignalQualityParser(ATParser):
     @staticmethod
     def parse(content):
         data = utils.split_str(content[0][content[0].index(':') + 1:])
-        return SignalQuality(data[0].strip(), data[1])
+        return SignalQuality(int(data[0].strip()), int(data[1]))
 
 
 class PinStatusParser(ATParser):
@@ -121,7 +125,7 @@ class SubscriberNumberParser(ATParser):
     def parse(content):
         data = utils.split_str(content[0][content[0].index(':') + 1:])
 
-        number = SubscriberNumber(data[1][1:-1], data[2])
+        number = SubscriberNumber(data[1][1:-1], int(data[2]))
 
         if data[0].strip():
             number.alpha = data[0].strip()
@@ -144,7 +148,7 @@ class IMSIParser(ATParser):
         mnc = content[0][3:5]
         msin = content[0][5:]
 
-        with open(get_config()['DEFAULT']['apnfile']) as f:
+        with open(get_apn_config_path()) as f:
             data = json.load(f)
 
             country = None
@@ -158,7 +162,7 @@ class IMSIParser(ATParser):
                 if mnc in data[mcc]:
                     network = data[mcc][mnc]
 
-            return IMSI(mcc, mnc, msin, network, country, iso)
+            return IMSI(mcc, mnc, msin, network.strip(), country.strip(), iso)
 
 
 class CallerIdentificationParser(ATParser):
@@ -168,5 +172,14 @@ class CallerIdentificationParser(ATParser):
 
     @staticmethod
     def parse(content):
+
         data = utils.split_str(content[0][content[0].index(':') + 1:])
-        return data[0].strip()
+
+        if len(data) > 2:
+            print(data[0])
+            print(data[0].strip())
+            print(data[0][1:-1])
+            return CallerIdentification(data[0].strip()[1:-1], int(data[1]), data[2].strip(),
+                                        int(data[3]), data[4].strip(), int(data[5]))
+        else:
+            return CallerIdentification(data[0].strip()[1:-1], int(data[1]))
