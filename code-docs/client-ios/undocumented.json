@@ -1,0 +1,1027 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPDevice.swift",
+      "line": null,
+      "symbol": "SPDevice",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPDevice.swift",
+      "line": 11,
+      "symbol": "SPDevice",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPDevice.swift",
+      "line": 12,
+      "symbol": "SPDevice.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPDevice.swift",
+      "line": 13,
+      "symbol": "SPDevice.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPDevice.swift",
+      "line": 14,
+      "symbol": "SPDevice.systemVersion",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPDevice.swift",
+      "line": 15,
+      "symbol": "SPDevice.deviceModelName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPDevice.swift",
+      "line": 16,
+      "symbol": "SPDevice.language",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPDevice.swift",
+      "line": 17,
+      "symbol": "SPDevice.sync",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPDevice.swift",
+      "line": 18,
+      "symbol": "SPDevice.apnToken",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPDevice.swift",
+      "line": 19,
+      "symbol": "SPDevice.voipToken",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPDevice.swift",
+      "line": 21,
+      "symbol": "SPDevice.deviceModel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPDevice.swift",
+      "line": 52,
+      "symbol": "SPDevice.local",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPDevice.swift",
+      "line": 84,
+      "symbol": "SPDevice.toData()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPDevice.swift",
+      "line": 107,
+      "symbol": "SPDevice.==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPGateway.swift",
+      "line": 12,
+      "symbol": "SPGateway",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPGateway.swift",
+      "line": 13,
+      "symbol": "SPGateway.imei",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPGateway.swift",
+      "line": 14,
+      "symbol": "SPGateway.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPGateway.swift",
+      "line": 15,
+      "symbol": "SPGateway.phoneNumber",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPGateway.swift",
+      "line": 17,
+      "symbol": "SPGateway.signalStrength",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPGateway.swift",
+      "line": 22,
+      "symbol": "SPGateway.color",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPGateway.swift",
+      "line": 26,
+      "symbol": "SPGateway.firmwareVersion",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPGateway.swift",
+      "line": 27,
+      "symbol": "SPGateway.carrier",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPGateway.swift",
+      "line": 29,
+      "symbol": "SPGateway.init(withIMEI:name:phoneNumber:colorString:signalStrength:firmwareVersion:carrier:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPGateway.swift",
+      "line": 40,
+      "symbol": "SPGateway.primaryKey()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPGateway.swift",
+      "line": 44,
+      "symbol": "SPGateway.ignoredProperties()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPMessage.swift",
+      "line": 12,
+      "symbol": "SPMessage",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPMessage.swift",
+      "line": 13,
+      "symbol": "SPMessage.Status",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPMessage.swift",
+      "line": 14,
+      "symbol": "SPMessage.Status.sent",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPMessage.swift",
+      "line": 15,
+      "symbol": "SPMessage.Status.failed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPMessage.swift",
+      "line": 18,
+      "symbol": "SPMessage.Direction",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPMessage.swift",
+      "line": 19,
+      "symbol": "SPMessage.Direction.sent",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPMessage.swift",
+      "line": 20,
+      "symbol": "SPMessage.Direction.received",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPMessage.swift",
+      "line": 23,
+      "symbol": "SPMessage.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPMessage.swift",
+      "line": 24,
+      "symbol": "SPMessage.time",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPMessage.swift",
+      "line": 25,
+      "symbol": "SPMessage.text",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPMessage.swift",
+      "line": 27,
+      "symbol": "SPMessage.status",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPMessage.swift",
+      "line": 32,
+      "symbol": "SPMessage.direction",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPMessage.swift",
+      "line": 38,
+      "symbol": "SPMessage.init(_:time:status:direction:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPMessage.swift",
+      "line": 46,
+      "symbol": "SPMessage.primaryKey()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPMessage.swift",
+      "line": 50,
+      "symbol": "SPMessage.ignoredProperties()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPVoicemail.swift",
+      "line": 13,
+      "symbol": "SPVoicemail",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPVoicemail.swift",
+      "line": 14,
+      "symbol": "SPVoicemail.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPVoicemail.swift",
+      "line": 15,
+      "symbol": "SPVoicemail.heard",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPVoicemail.swift",
+      "line": 16,
+      "symbol": "SPVoicemail.time",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPVoicemail.swift",
+      "line": 17,
+      "symbol": "SPVoicemail.secondParty",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPVoicemail.swift",
+      "line": 22,
+      "symbol": "SPVoicemail.gateway",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPVoicemail.swift",
+      "line": 23,
+      "symbol": "SPVoicemail.duration",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPVoicemail.swift",
+      "line": 25,
+      "symbol": "SPVoicemail.audioFilePath",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPVoicemail.swift",
+      "line": 30,
+      "symbol": "SPVoicemail.init(_:date:origin:audio:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPVoicemail.swift",
+      "line": 40,
+      "symbol": "SPVoicemail.primaryKey()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/Models/SPVoicemail.swift",
+      "line": 44,
+      "symbol": "SPVoicemail.ignoredProperties()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 16,
+      "symbol": "SPManagerDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 17,
+      "symbol": "SPManagerDelegate.spManager(didAnswerIncomingCall:on:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 20,
+      "symbol": "SPManager",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 21,
+      "symbol": "SPManager.shared",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 22,
+      "symbol": "SPManager.delegate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 50,
+      "symbol": "SPManager.registerNewAccount(_:keychainEnvironment:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 77,
+      "symbol": "SPManager.SPKeychainEnvironment",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 78,
+      "symbol": "SPManager.SPKeychainEnvironment.cloud",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 79,
+      "symbol": "SPManager.SPKeychainEnvironment.local",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 81,
+      "symbol": "SPManager.SPCloudSharingError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 82,
+      "symbol": "SPManager.SPCloudSharingError.cloudAlreadyAssociatedWithDifferentAccount",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 83,
+      "symbol": "SPManager.SPCloudSharingError.accountAssociatedWithDifferentCloud",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 86,
+      "symbol": "SPManager.checkUsernameWithCloud(_:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 106,
+      "symbol": "SPManager.getUsername()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 115,
+      "symbol": "SPManager.loginUser(username:password:keychainEnvironment:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 142,
+      "symbol": "SPManager.logoutUser(reportToServer:onAllDevices:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 189,
+      "symbol": "SPManager.makeCall(to:on:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 200,
+      "symbol": "SPManager.hangUpCall(via:notifyCallKit:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 212,
+      "symbol": "SPManager.handleVoIPToken(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 226,
+      "symbol": "SPManager.handleVoIPNotification(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 261,
+      "symbol": "SPManager.GatewayError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 262,
+      "symbol": "SPManager.GatewayError.RTCError(msg:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 263,
+      "symbol": "SPManager.GatewayError.SignalingError(msg:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 264,
+      "symbol": "SPManager.GatewayError.PushError(msg:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 265,
+      "symbol": "SPManager.GatewayError.GSMModuleError(msg:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 266,
+      "symbol": "SPManager.GatewayError.APIError(msg:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 267,
+      "symbol": "SPManager.GatewayError.other(msg:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 273,
+      "symbol": "SPManager.handleGatewayError(code:message:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 382,
+      "symbol": "SPManager.sendErrorNotification(for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 395,
+      "symbol": "SPManager.isAuthetificated(completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 420,
+      "symbol": "SPManager.getRecentCalls()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 424,
+      "symbol": "SPManager.deleteRecentCall(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 428,
+      "symbol": "SPManager.getCountOfUnseenRecentCalls()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 433,
+      "symbol": "SPManager.getAllChats(completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 437,
+      "symbol": "SPManager.deleteChat(_:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 442,
+      "symbol": "SPManager.addSampleChats()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 463,
+      "symbol": "SPManager.sendSMS(_:in:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 479,
+      "symbol": "SPManager.getVoicemails()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 488,
+      "symbol": "SPManager.markVoicemailAsHeard(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 492,
+      "symbol": "SPManager.markVoicemailAsUnheard(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 496,
+      "symbol": "SPManager.getCountOfUnheardVoicemails()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 500,
+      "symbol": "SPManager.deleteVoicemail(withId:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 514,
+      "symbol": "SPManager.addSampleVoicemails()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 533,
+      "symbol": "SPManager.changeUserPassword(new:old:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 537,
+      "symbol": "SPManager.getUserData(completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 541,
+      "symbol": "SPManager.getAllGateways(completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 552,
+      "symbol": "SPManager.getGateway(withImei:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 563,
+      "symbol": "SPManager.updateGatewayName(_:of:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 577,
+      "symbol": "SPManager.updateGatewayColor(_:of:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 592,
+      "symbol": "SPManager.addRecentCall(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 596,
+      "symbol": "SPManager.addVoicemail(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 600,
+      "symbol": "SPManager.getiCloudSyncState()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 608,
+      "symbol": "SPManager.setiCloudSyncState(_:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 619,
+      "symbol": "SPManager.getAllDevices(completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 626,
+      "symbol": "SPManager.revoke(device:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 635,
+      "symbol": "SPManager.receivedPushDeviceToken(_:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SPManager.swift",
+      "line": 666,
+      "symbol": "SPManager.sharedInstance()",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SignalingClient.swift",
+      "line": 13,
+      "symbol": "SignalingClientError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SignalingClient.swift",
+      "line": 14,
+      "symbol": "SignalingClientError.jsonDecodingFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SignalingClient.swift",
+      "line": 15,
+      "symbol": "SignalingClientError.unableToSignIn(reason:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SignalingClient.swift",
+      "line": 18,
+      "symbol": "SignalingClient",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SignalingClient.swift",
+      "line": 31,
+      "symbol": "SignalingClient.SignalingType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SignalingClient.swift",
+      "line": 32,
+      "symbol": "SignalingClient.SignalingType.offer",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SignalingClient.swift",
+      "line": 33,
+      "symbol": "SignalingClient.SignalingType.answer",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SignalingClient.swift",
+      "line": 34,
+      "symbol": "SignalingClient.SignalingType.addCandidate",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SignalingClient.swift",
+      "line": 37,
+      "symbol": "SignalingClient.init(username:password:imei:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SignalingClient.swift",
+      "line": 45,
+      "symbol": "SignalingClient.close()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SignalingClient.swift",
+      "line": 60,
+      "symbol": "SignalingClient.authenticate(type:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SignalingClient.swift",
+      "line": 96,
+      "symbol": "SignalingClient.post(offer:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SignalingClient.swift",
+      "line": 129,
+      "symbol": "SignalingClient.post(answer:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SignalingClient.swift",
+      "line": 145,
+      "symbol": "SignalingClient.post(candidate:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/SignalingClient.swift",
+      "line": 178,
+      "symbol": "SignalingClient.receiveOffer(completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": null,
+      "symbol": "WebRTCClient",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": null,
+      "symbol": "WebRTCClient",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 12,
+      "symbol": "WebRTCClientDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 13,
+      "symbol": "WebRTCClientDelegate.webRTCClient(didReceiveError:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 14,
+      "symbol": "WebRTCClientDelegate.webRTCClient(didGenerateNewCandidate:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 15,
+      "symbol": "WebRTCClientDelegate.webRTCClient(didReceiveRemoteTrack:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 18,
+      "symbol": "WebRTCClient",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 19,
+      "symbol": "WebRTCClient.delegate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 65,
+      "symbol": "WebRTCClient.muteAudio()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 69,
+      "symbol": "WebRTCClient.unmuteAudio()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 81,
+      "symbol": "WebRTCClient.offer(completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 95,
+      "symbol": "WebRTCClient.answer(completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 113,
+      "symbol": "WebRTCClient.handle(offer:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 118,
+      "symbol": "WebRTCClient.handle(answer:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 132,
+      "symbol": "WebRTCClient.peerConnection(_:didChange:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 137,
+      "symbol": "WebRTCClient.peerConnection(_:didAdd:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 146,
+      "symbol": "WebRTCClient.peerConnection(_:didRemove:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 151,
+      "symbol": "WebRTCClient.peerConnection(_:didChange:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 156,
+      "symbol": "WebRTCClient.peerConnection(_:didChange:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 164,
+      "symbol": "WebRTCClient.peerConnection(_:didGenerate:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 170,
+      "symbol": "WebRTCClient.peerConnection(_:didRemove:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 175,
+      "symbol": "WebRTCClient.peerConnection(_:didOpen:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS/SIMplePhoneKit/WebRTCClient.swift",
+      "line": 180,
+      "symbol": "WebRTCClient.peerConnectionShouldNegotiate(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/lukaskuster/Code/DA-Final/Diplomarbeit/Client-iOS"
+}

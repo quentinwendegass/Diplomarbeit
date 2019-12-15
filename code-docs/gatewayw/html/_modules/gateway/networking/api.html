@@ -1,0 +1,300 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>gateway.networking.api &#8212; gatewayw 0.2.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for gateway.networking.api</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">pyee</span> <span class="kn">import</span> <span class="n">EventEmitter</span>
+
+<span class="kn">from</span> <span class="nn">gateway.networking.sse</span> <span class="kn">import</span> <span class="n">SSE</span>
+<span class="kn">from</span> <span class="nn">gateway.utils</span> <span class="kn">import</span> <span class="n">logger</span><span class="p">,</span> <span class="n">AnsiEscapeSequence</span>
+
+
+<div class="viewcode-block" id="API"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.api.API">[docs]</a><span class="k">class</span> <span class="nc">API</span><span class="p">(</span><span class="n">EventEmitter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Wrapper to send requests to the REST-API.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">_id</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">(),</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Construct a new &#39;API&#39; object.</span>
+
+<span class="sd">        :param username: username for the backend</span>
+<span class="sd">        :param password: password for the backend</span>
+<span class="sd">        :param _id: gateway id (imei)</span>
+<span class="sd">        :param host: host address</span>
+<span class="sd">        :param loop: asyncio event loop</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">scheduler</span><span class="o">=</span><span class="n">asyncio</span><span class="o">.</span><span class="n">run_coroutine_threadsafe</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="n">loop</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="c1"># Create an new sse connection, that emits the incoming push notifications on the API object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sse</span> <span class="o">=</span> <span class="n">SSE</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># Create the device if it is not created yet</span>
+
+        <span class="n">connected</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">connected</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">post_gateway</span><span class="p">()</span>
+                <span class="n">connected</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;API&#39;</span><span class="p">,</span> <span class="s1">&#39;ConnectionError&#39;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Gateway&#39;</span><span class="p">,</span> <span class="s1">&#39;IMEI(</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+
+<div class="viewcode-block" id="API.start"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.api.API.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Start the sse thread.</span>
+
+<span class="sd">        :return: nothing</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sse</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="API.close"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.api.API.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Close the sse thread.</span>
+
+<span class="sd">        :return: noting</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sse</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="API.get_gateway"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.api.API.get_gateway">[docs]</a>    <span class="k">def</span> <span class="nf">get_gateway</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s1">&#39;/gateway/&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="API.get_gateways"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.api.API.get_gateways">[docs]</a>    <span class="k">def</span> <span class="nf">get_gateways</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s1">&#39;/gateways&#39;</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="API.post_gateway"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.api.API.post_gateway">[docs]</a>    <span class="k">def</span> <span class="nf">post_gateway</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s1">&#39;/gateway&#39;</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;imei&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">})</span></div>
+
+<div class="viewcode-block" id="API.delete_gateway"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.api.API.delete_gateway">[docs]</a>    <span class="k">def</span> <span class="nf">delete_gateway</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s1">&#39;/gateway/&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="API.put_gateway"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.api.API.put_gateway">[docs]</a>    <span class="k">def</span> <span class="nf">put_gateway</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signal_strength</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">carrier</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">firmware_version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">phone_number</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">pin_required</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">signal_strength</span><span class="p">:</span>
+            <span class="n">body</span><span class="p">[</span><span class="s1">&#39;signalStrength&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">signal_strength</span>
+        <span class="k">if</span> <span class="n">carrier</span><span class="p">:</span>
+            <span class="n">body</span><span class="p">[</span><span class="s1">&#39;carrier&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">carrier</span>
+        <span class="k">if</span> <span class="n">firmware_version</span><span class="p">:</span>
+            <span class="n">body</span><span class="p">[</span><span class="s1">&#39;firmwareVersion&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">firmware_version</span>
+        <span class="k">if</span> <span class="n">phone_number</span><span class="p">:</span>
+            <span class="n">body</span><span class="p">[</span><span class="s1">&#39;phoneNumber&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">phone_number</span>
+        <span class="k">if</span> <span class="n">pin_required</span><span class="p">:</span>
+            <span class="n">body</span><span class="p">[</span><span class="s1">&#39;pinRequired&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pin_required</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s1">&#39;/gateway/&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="API.get_user"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.api.API.get_user">[docs]</a>    <span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="API.put_user"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.api.API.put_user">[docs]</a>    <span class="k">def</span> <span class="nf">put_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">first_name</span><span class="p">:</span>
+            <span class="n">body</span><span class="p">[</span><span class="s1">&#39;firstName&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">first_name</span>
+        <span class="k">if</span> <span class="n">last_name</span><span class="p">:</span>
+            <span class="n">body</span><span class="p">[</span><span class="s1">&#39;lastName&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">last_name</span>
+        <span class="k">if</span> <span class="n">password</span><span class="p">:</span>
+            <span class="n">body</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">password</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="API.push_notification"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.api.API.push_notification">[docs]</a>    <span class="k">def</span> <span class="nf">push_notification</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">device_id</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alert</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">voip</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;event&#39;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
+            <span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="n">device_id</span><span class="p">,</span>
+            <span class="s1">&#39;silent&#39;</span><span class="p">:</span> <span class="n">silent</span><span class="p">,</span>
+            <span class="s1">&#39;voip&#39;</span><span class="p">:</span> <span class="n">voip</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">body</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="k">if</span> <span class="n">alert</span><span class="p">:</span>
+            <span class="n">body</span><span class="p">[</span><span class="s1">&#39;alert&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">alert</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s1">&#39;/device/push&#39;</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="API.broadcast_notification"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.api.API.broadcast_notification">[docs]</a>    <span class="k">def</span> <span class="nf">broadcast_notification</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alert</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">voip</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;event&#39;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
+            <span class="s1">&#39;silent&#39;</span><span class="p">:</span> <span class="n">silent</span><span class="p">,</span>
+            <span class="s1">&#39;voip&#39;</span><span class="p">:</span> <span class="n">voip</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">body</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="k">if</span> <span class="n">alert</span><span class="p">:</span>
+            <span class="n">body</span><span class="p">[</span><span class="s1">&#39;alert&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">alert</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s1">&#39;/device/broadcast&#39;</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="API.push_incoming_call"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.api.API.push_incoming_call">[docs]</a>    <span class="k">def</span> <span class="nf">push_incoming_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">broadcast_notification</span><span class="p">(</span><span class="s1">&#39;incomingCall&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;number&#39;</span><span class="p">:</span> <span class="n">number</span><span class="p">,</span>
+            <span class="s1">&#39;gateway&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
+        <span class="p">},</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">voip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;API&#39;</span><span class="p">,</span> <span class="s1">&#39;BroadcastError&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="API.push_error"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.api.API.push_error">[docs]</a>    <span class="k">def</span> <span class="nf">push_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">broadcast_notification</span><span class="p">(</span><span class="s1">&#39;gatewayError&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="n">code</span><span class="p">,</span>
+            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">message</span><span class="p">,</span>
+            <span class="s1">&#39;gateway&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
+        <span class="p">},</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">voip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;API&#39;</span><span class="p">,</span> <span class="s1">&#39;PushErrorError&#39;</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sends a http request to the server with a given http method</span>
+<span class="sd">        and returns the json body in a dict</span>
+
+<span class="sd">        :param path: path of the endpoint</span>
+<span class="sd">        :param method: http method from requests module</span>
+<span class="sd">        :param body: json data in form of a dict</span>
+<span class="sd">        :type path: str</span>
+<span class="sd">        :type method: request function</span>
+<span class="sd">        :type body: dict</span>
+<span class="sd">        :return: body of the response and status code in a tuple</span>
+<span class="sd">        :returns: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">body</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">dict</span> <span class="ow">and</span> <span class="n">body</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Body has to be of type dict!&#39;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;API&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">raise</span> <span class="n">error</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">body</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ConnectionError</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="n">status_code</span> <span class="o">=</span> <span class="n">AnsiEscapeSequence</span><span class="o">.</span><span class="n">BOLD</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span> <span class="o">+</span> <span class="n">AnsiEscapeSequence</span><span class="o">.</span><span class="n">DEFAULT</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">AnsiEscapeSequence</span><span class="o">.</span><span class="n">UNDERLINE</span> <span class="o">+</span> <span class="n">path</span> <span class="o">+</span> <span class="n">AnsiEscapeSequence</span><span class="o">.</span><span class="n">DEFAULT</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;API&#39;</span><span class="p">,</span> <span class="s1">&#39;Finished request </span><span class="si">{}</span><span class="s1"> with status code </span><span class="si">{}</span><span class="s1"> and data:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">status_code</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">gatewayw</a></h1>
+
+
+
+<p class="blurb">Main program for the SIMplePhone Gateway.</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=quentinwendegass&repo=Diplomarbeit&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../gateway.html">gateway package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pcmlib.html">pcmlib</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Quentin Wendegass.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

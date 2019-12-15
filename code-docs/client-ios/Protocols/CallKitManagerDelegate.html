@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>CallKitManagerDelegate Protocol Reference</title>
+    <link rel='stylesheet' type='text/css' href='../css/jazzy.css' />
+    <link rel='stylesheet' type='text/css' href='../css/highlight.css' />
+    <meta charset='utf-8'>
+    <script src='../js/jquery.min.js' defer></script>
+    <script src='../js/jazzy.js' defer></script>
+  </head>
+  <body>
+
+    <a name='//apple_ref/swift/Protocol/CallKitManagerDelegate' class='dashAnchor'></a>
+
+    <a title='CallKitManagerDelegate Protocol Reference'></a>
+
+    <header class='header'>
+      <p class='header-col header-col--primary'>
+        <a class='header-link' href='../index.html'>
+          SIMplePhoneKit Docs
+        </a>
+         (50% documented)
+      </p>
+    
+    
+    </header>
+
+    <p class='breadcrumbs'>
+      <a class='breadcrumb' href='../index.html'>SIMplePhoneKit Reference</a>
+      <img class='carat' src='../img/carat.png' />
+      CallKitManagerDelegate Protocol Reference
+    </p>
+
+    <div class='content-wrapper'>
+      <nav class='navigation'>
+        <ul class='nav-groups'>
+          <li class='nav-group-name'>
+            <a class='nav-group-name-link' href='../Classes.html'>Classes</a>
+            <ul class='nav-group-tasks'>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/APIClient.html'>APIClient</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/APIClient/GatewayPushEvent.html'>– GatewayPushEvent</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/BLESetupManager.html'>BLESetupManager</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/BLESetupManager/SetupError.html'>– SetupError</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/BLESetupManager/Status.html'>– Status</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/CallKitManager.html'>CallKitManager</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/CallKitManager/CallEndReason.html'>– CallEndReason</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPAccount.html'>SPAccount</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPChat.html'>SPChat</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPDevice.html'>SPDevice</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPGateway.html'>SPGateway</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPManager.html'>SPManager</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPManager/SPKeychainEnvironment.html'>– SPKeychainEnvironment</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPManager/SPCloudSharingError.html'>– SPCloudSharingError</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPManager/GatewayError.html'>– GatewayError</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPMessage.html'>SPMessage</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPMessage/Status.html'>– Status</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPMessage/Direction.html'>– Direction</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPNetwork.html'>SPNetwork</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPNumber.html'>SPNumber</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPRecentCall.html'>SPRecentCall</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPRecentCall/Direction.html'>– Direction</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPVoicemail.html'>SPVoicemail</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SignalingClient.html'>SignalingClient</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SignalingClient/SignalingType.html'>– SignalingType</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/WebRTCClient.html'>WebRTCClient</a>
+              </li>
+            </ul>
+          </li>
+          <li class='nav-group-name'>
+            <a class='nav-group-name-link' href='../Enumerations.html'>Enumerations</a>
+            <ul class='nav-group-tasks'>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Enums/APIError.html'>APIError</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Enums/SignalingClientError.html'>SignalingClientError</a>
+              </li>
+            </ul>
+          </li>
+          <li class='nav-group-name'>
+            <a class='nav-group-name-link' href='../Extensions.html'>Extensions</a>
+            <ul class='nav-group-tasks'>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Extensions/RTCSessionDescription.html'>RTCSessionDescription</a>
+              </li>
+            </ul>
+          </li>
+          <li class='nav-group-name'>
+            <a class='nav-group-name-link' href='../Protocols.html'>Protocols</a>
+            <ul class='nav-group-tasks'>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Protocols/BLESetupManagerDelegate.html'>BLESetupManagerDelegate</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Protocols/CallKitManagerDelegate.html'>CallKitManagerDelegate</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Protocols/SPManagerDelegate.html'>SPManagerDelegate</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Protocols/WebRTCClientDelegate.html'>WebRTCClientDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class='main-content'>
+
+        <section class='section'>
+          <div class='section-content'>
+            <h1>CallKitManagerDelegate</h1>
+              <div class='declaration'>
+                <div class='language'>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CallKitManagerDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p>Delegate Protocol of the CallKitManagerDelegate</p>
+
+          </div>
+        </section>
+
+        <section class='section'>
+          <div class='section-content'>
+            <div class="task-group">
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE0017didAcceptIncomingD11FromGateway4with10completionyAA9SPGatewayC_AA8SPNumberCySbctF"></a>
+                    <a name="//apple_ref/swift/Method/callKitManager(didAcceptIncomingCallFromGateway:with:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE0017didAcceptIncomingD11FromGateway4with10completionyAA9SPGatewayC_AA8SPNumberCySbctF">callKitManager(didAcceptIncomingCallFromGateway:with:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the user accepts the incoming call from the gateway</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">callKitManager</span><span class="p">(</span><span class="n">didAcceptIncomingCallFromGateway</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="n">with</span> <span class="nv">caller</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPNumber.html">SPNumber</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>gateway</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>SPGateway that is operating the call</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>caller</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The calling party (SPNumber)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A completion handler that is supposed to be called by the delegate receiver</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h5>Return Value</h5>
+                        <p>()</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE0018didConnectOutgoingD11FromGateway4with10completionyAA9SPGatewayC_AA8SPNumberCySbctF"></a>
+                    <a name="//apple_ref/swift/Method/callKitManager(didConnectOutgoingCallFromGateway:with:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE0018didConnectOutgoingD11FromGateway4with10completionyAA9SPGatewayC_AA8SPNumberCySbctF">callKitManager(didConnectOutgoingCallFromGateway:with:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the outgoing call is connected</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">callKitManager</span><span class="p">(</span><span class="n">didConnectOutgoingCallFromGateway</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="n">with</span> <span class="nv">caller</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPNumber.html">SPNumber</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>gateway</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>SPGateway that is operating the call</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>caller</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The calling party (SPNumber)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A completion handler that is supposed to be called by the delegate receiver</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h5>Return Value</h5>
+                        <p>()</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE0018didDeclineIncomingD11FromGateway010withRecentD4Item10completionyAA9SPGatewayC_AA08SPRecentD0CySbctF"></a>
+                    <a name="//apple_ref/swift/Method/callKitManager(didDeclineIncomingCallFromGateway:withRecentCallItem:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE0018didDeclineIncomingD11FromGateway010withRecentD4Item10completionyAA9SPGatewayC_AA08SPRecentD0CySbctF">callKitManager(didDeclineIncomingCallFromGateway:withRecentCallItem:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the incoming call is declined</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">callKitManager</span><span class="p">(</span><span class="n">didDeclineIncomingCallFromGateway</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="n">withRecentCallItem</span> <span class="nv">recentItem</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPRecentCall.html">SPRecentCall</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>gateway</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>SPGateway that is operating the call</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recentItem</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A SPRecentCall object representing inforamtion about the call</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A completion handler that is supposed to be called by the delegate receiver</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h5>Return Value</h5>
+                        <p>()</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE006didEndD11FromGateway010withRecentD4Item10completionyAA9SPGatewayC_AA08SPRecentD0CySbctF"></a>
+                    <a name="//apple_ref/swift/Method/callKitManager(didEndCallFromGateway:withRecentCallItem:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE006didEndD11FromGateway010withRecentD4Item10completionyAA9SPGatewayC_AA08SPRecentD0CySbctF">callKitManager(didEndCallFromGateway:withRecentCallItem:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the call is ended</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">callKitManager</span><span class="p">(</span><span class="n">didEndCallFromGateway</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="n">withRecentCallItem</span> <span class="nv">recentItem</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPRecentCall.html">SPRecentCall</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>gateway</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>SPGateway that is operating the call</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recentItem</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A SPRecentCall object representing inforamtion about the call</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A completion handler that is supposed to be called by the delegate receiver</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h5>Return Value</h5>
+                        <p>()</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE018didChangeHeldState02onD4From10completionySb_AA9SPGatewayCySbctF"></a>
+                    <a name="//apple_ref/swift/Method/callKitManager(didChangeHeldState:onCallFrom:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE018didChangeHeldState02onD4From10completionySb_AA9SPGatewayCySbctF">callKitManager(didChangeHeldState:onCallFrom:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the calls held state is changed</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">callKitManager</span><span class="p">(</span><span class="n">didChangeHeldState</span> <span class="nv">isOnHold</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">onCallFrom</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isOnHold</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Boolean indicating the held state (true = held)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>gateway</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>SPGateway that is operating the call</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A completion handler that is supposed to be called by the delegate receiver</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h5>Return Value</h5>
+                        <p>()</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE018didChangeMuteState02onD4From10completionySb_AA9SPGatewayCySbctF"></a>
+                    <a name="//apple_ref/swift/Method/callKitManager(didChangeMuteState:onCallFrom:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE018didChangeMuteState02onD4From10completionySb_AA9SPGatewayCySbctF">callKitManager(didChangeMuteState:onCallFrom:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the calls muting state is changed</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">callKitManager</span><span class="p">(</span><span class="n">didChangeMuteState</span> <span class="nv">isMuted</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">onCallFrom</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isMuted</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Boolean indicating the mute state (true = muted)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>gateway</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>SPGateway that is operating the call</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A completion handler that is supposed to be called by the delegate receiver</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h5>Return Value</h5>
+                        <p>()</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE012didEnterDTMF02onD4From10completionySS_AA9SPGatewayCySbctF"></a>
+                    <a name="//apple_ref/swift/Method/callKitManager(didEnterDTMF:onCallFrom:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE012didEnterDTMF02onD4From10completionySS_AA9SPGatewayCySbctF">callKitManager(didEnterDTMF:onCallFrom:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the caller sends out DTMF tones</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">callKitManager</span><span class="p">(</span><span class="n">didEnterDTMF</span> <span class="nv">digits</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">onCallFrom</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>digits</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>DTMF digits to be send</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>gateway</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>SPGateway that is operating the call</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A completion handler that is supposed to be called by the delegate receiver</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class='footer'>
+      <p>© 2019 <a class="link" href="https://github.com/lukaskuster" target="_blank" rel="external">Lukas Kuster</a>. All rights reserved.</p>
+      <p>Generated by <a class='link' href='https://github.com/realm/jazzy' target='_blank' rel='external'>jazzy ♪♫ v0.9.5</a>, a <a class='link' href='http://realm.io' target='_blank' rel='external'>Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

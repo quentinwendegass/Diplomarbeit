@@ -1,0 +1,518 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>gateway.networking package &#8212; gatewayw 0.2.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="gateway.utils package" href="gateway.utils.html" />
+    <link rel="prev" title="gateway.io.sim800 package" href="gateway.io.sim800.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="gateway-networking-package">
+<h1>gateway.networking package<a class="headerlink" href="#gateway-networking-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-gateway.networking.api">
+<span id="gateway-networking-api-module"></span><h2>gateway.networking.api module<a class="headerlink" href="#module-gateway.networking.api" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gateway.networking.api.API">
+<em class="property">class </em><code class="descclassname">gateway.networking.api.</code><code class="descname">API</code><span class="sig-paren">(</span><em>username</em>, <em>password</em>, <em>_id</em>, <em>host='localhost'</em>, <em>loop=&lt;_UnixSelectorEventLoop running=False closed=False debug=False&gt;</em>, <em>timeout=5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/api.html#API"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.api.API" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyee._compat.CompatEventEmitter</span></code></p>
+<p>Wrapper to send requests to the REST-API.</p>
+<dl class="method">
+<dt id="gateway.networking.api.API.broadcast_notification">
+<code class="descname">broadcast_notification</code><span class="sig-paren">(</span><em>event</em>, <em>data=None</em>, <em>alert=None</em>, <em>silent=False</em>, <em>voip=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/api.html#API.broadcast_notification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.api.API.broadcast_notification" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.networking.api.API.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/api.html#API.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.api.API.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the sse thread.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">noting</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.networking.api.API.delete_gateway">
+<code class="descname">delete_gateway</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/api.html#API.delete_gateway"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.api.API.delete_gateway" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.networking.api.API.get_gateway">
+<code class="descname">get_gateway</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/api.html#API.get_gateway"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.api.API.get_gateway" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.networking.api.API.get_gateways">
+<code class="descname">get_gateways</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/api.html#API.get_gateways"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.api.API.get_gateways" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.networking.api.API.get_user">
+<code class="descname">get_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/api.html#API.get_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.api.API.get_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.networking.api.API.post_gateway">
+<code class="descname">post_gateway</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/api.html#API.post_gateway"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.api.API.post_gateway" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.networking.api.API.push_error">
+<code class="descname">push_error</code><span class="sig-paren">(</span><em>code</em>, <em>message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/api.html#API.push_error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.api.API.push_error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.networking.api.API.push_incoming_call">
+<code class="descname">push_incoming_call</code><span class="sig-paren">(</span><em>number</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/api.html#API.push_incoming_call"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.api.API.push_incoming_call" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.networking.api.API.push_notification">
+<code class="descname">push_notification</code><span class="sig-paren">(</span><em>event</em>, <em>device_id</em>, <em>data=None</em>, <em>alert=None</em>, <em>silent=False</em>, <em>voip=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/api.html#API.push_notification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.api.API.push_notification" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.networking.api.API.put_gateway">
+<code class="descname">put_gateway</code><span class="sig-paren">(</span><em>signal_strength=None</em>, <em>carrier=None</em>, <em>firmware_version=None</em>, <em>phone_number=None</em>, <em>pin_required=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/api.html#API.put_gateway"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.api.API.put_gateway" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.networking.api.API.put_user">
+<code class="descname">put_user</code><span class="sig-paren">(</span><em>first_name=None</em>, <em>last_name=None</em>, <em>password=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/api.html#API.put_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.api.API.put_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.networking.api.API.start">
+<code class="descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/api.html#API.start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.api.API.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start the sse thread.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">nothing</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-gateway.networking.caller">
+<span id="gateway-networking-caller-module"></span><h2>gateway.networking.caller module<a class="headerlink" href="#module-gateway.networking.caller" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="gateway.networking.caller.CallError">
+<em class="property">exception </em><code class="descclassname">gateway.networking.caller.</code><code class="descname">CallError</code><a class="reference internal" href="_modules/gateway/networking/caller.html#CallError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.caller.CallError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.networking.caller.CallStreamTrack">
+<em class="property">class </em><code class="descclassname">gateway.networking.caller.</code><code class="descname">CallStreamTrack</code><span class="sig-paren">(</span><em>pcm</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/caller.html#CallStreamTrack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.caller.CallStreamTrack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aiortc.mediastreams.AudioStreamTrack</span></code></p>
+<p>WebRTC audio track that gets send to the remote peer.</p>
+<dl class="method">
+<dt id="gateway.networking.caller.CallStreamTrack.recv">
+<em class="property">coroutine </em><code class="descname">recv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/caller.html#CallStreamTrack.recv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.caller.CallStreamTrack.recv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets called when a new audio frame gets send to the remote peer.
+This method must return a audio frame that is g.711 encoded.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">audio frame</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.networking.caller.Caller">
+<em class="property">class </em><code class="descclassname">gateway.networking.caller.</code><code class="descname">Caller</code><span class="sig-paren">(</span><em>username: str</em>, <em>password: str</em>, <em>gateway_imei</em>, <em>host='localhost'</em>, <em>signaling_timeout=10</em>, <em>webrtc_timeout=10</em>, <em>debug=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/caller.html#Caller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.caller.Caller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyee._compat.CompatEventEmitter</span></code></p>
+<p>Class to establish a WebRTC connection and to stream the audio to a device.</p>
+<dl class="method">
+<dt id="gateway.networking.caller.Caller.is_ongoing">
+<code class="descname">is_ongoing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/caller.html#Caller.is_ongoing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.caller.Caller.is_ongoing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the webrtc connection is ongoing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ongoing connection</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.networking.caller.Caller.start_call">
+<code class="descname">start_call</code><span class="sig-paren">(</span><em>role</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/caller.html#Caller.start_call"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.caller.Caller.start_call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes a new webrtc connection.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>role</strong> (<a class="reference internal" href="#gateway.networking.caller.Role" title="gateway.networking.caller.Role"><em>Role</em></a>) – role of the connection</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">nothing</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.networking.caller.Caller.stop_call">
+<code class="descname">stop_call</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/caller.html#Caller.stop_call"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.caller.Caller.stop_call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes the webrtc connection.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">nothing.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.networking.caller.Role">
+<em class="property">class </em><code class="descclassname">gateway.networking.caller.</code><code class="descname">Role</code><a class="reference internal" href="_modules/gateway/networking/caller.html#Role"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.caller.Role" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></p>
+<p>Enum for the role of the description.</p>
+<dl class="attribute">
+<dt id="gateway.networking.caller.Role.ANSWER">
+<code class="descname">ANSWER</code><em class="property"> = 1</em><a class="headerlink" href="#gateway.networking.caller.Role.ANSWER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.networking.caller.Role.OFFER">
+<code class="descname">OFFER</code><em class="property"> = 0</em><a class="headerlink" href="#gateway.networking.caller.Role.OFFER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-gateway.networking.signaling">
+<span id="gateway-networking-signaling-module"></span><h2>gateway.networking.signaling module<a class="headerlink" href="#module-gateway.networking.signaling" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="gateway.networking.signaling.AuthenticationError">
+<em class="property">exception </em><code class="descclassname">gateway.networking.signaling.</code><code class="descname">AuthenticationError</code><a class="reference internal" href="_modules/gateway/networking/signaling.html#AuthenticationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.signaling.AuthenticationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="gateway.networking.signaling.authenticate">
+<em class="property">coroutine </em><code class="descclassname">gateway.networking.signaling.</code><code class="descname">authenticate</code><span class="sig-paren">(</span><em>socket</em>, <em>role</em>, <em>username</em>, <em>password</em>, <em>gateway</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/signaling.html#authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.signaling.authenticate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send the authentication event to the signaling server</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>socket</strong> (<em>object</em>) – websocket client</li>
+<li><strong>role</strong> (<a class="reference internal" href="#gateway.networking.caller.Role" title="gateway.networking.caller.Role"><em>Role</em></a>) – rule of the connection (offer, answer)</li>
+<li><strong>username</strong> (<em>str</em>) – username of the client</li>
+<li><strong>password</strong> (<em>str</em>) – password of the client</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">nothing</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gateway.networking.signaling.from_ice_candidate">
+<code class="descclassname">gateway.networking.signaling.</code><code class="descname">from_ice_candidate</code><span class="sig-paren">(</span><em>candidate</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/signaling.html#from_ice_candidate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.signaling.from_ice_candidate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="gateway.networking.signaling.recv_answer">
+<em class="property">coroutine </em><code class="descclassname">gateway.networking.signaling.</code><code class="descname">recv_answer</code><span class="sig-paren">(</span><em>socket</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/signaling.html#recv_answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.signaling.recv_answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the ice description answer of the peer client</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>socket</strong> (<em>object</em>) – websocket client</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">answer RTCSessionDescription</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gateway.networking.signaling.recv_offer">
+<em class="property">coroutine </em><code class="descclassname">gateway.networking.signaling.</code><code class="descname">recv_offer</code><span class="sig-paren">(</span><em>socket</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/signaling.html#recv_offer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.signaling.recv_offer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the ice description offer of the peer client</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>socket</strong> (<em>object</em>) – websocket client</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">offer RTCSessionDescription</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gateway.networking.signaling.resv_ice_candidate">
+<em class="property">coroutine </em><code class="descclassname">gateway.networking.signaling.</code><code class="descname">resv_ice_candidate</code><span class="sig-paren">(</span><em>socket</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/signaling.html#resv_ice_candidate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.signaling.resv_ice_candidate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Waits for the socket to send an ice candidate.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>socket</strong> – websocket client</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">tuple of error and ice candidate</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gateway.networking.signaling.send_answer">
+<em class="property">coroutine </em><code class="descclassname">gateway.networking.signaling.</code><code class="descname">send_answer</code><span class="sig-paren">(</span><em>socket</em>, <em>desc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/signaling.html#send_answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.signaling.send_answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send the answer ice description to the peer client.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>socket</strong> (<em>object</em>) – websocket client</li>
+<li><strong>desc</strong> (<em>object</em>) – RTCSessionDescription answer</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">nothing</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gateway.networking.signaling.send_offer">
+<em class="property">coroutine </em><code class="descclassname">gateway.networking.signaling.</code><code class="descname">send_offer</code><span class="sig-paren">(</span><em>socket</em>, <em>desc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/signaling.html#send_offer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.signaling.send_offer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send the offer ice description to the peer client.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>socket</strong> (<em>object</em>) – websocket client</li>
+<li><strong>desc</strong> (<em>object</em>) – RTCSessionDescription offer</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">nothing</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gateway.networking.signaling.to_ice_candidate">
+<code class="descclassname">gateway.networking.signaling.</code><code class="descname">to_ice_candidate</code><span class="sig-paren">(</span><em>ice</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/signaling.html#to_ice_candidate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.signaling.to_ice_candidate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-gateway.networking.sse">
+<span id="gateway-networking-sse-module"></span><h2>gateway.networking.sse module<a class="headerlink" href="#module-gateway.networking.sse" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gateway.networking.sse.SSE">
+<em class="property">class </em><code class="descclassname">gateway.networking.sse.</code><code class="descname">SSE</code><span class="sig-paren">(</span><em>emitter</em>, <em>timeout=5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/sse.html#SSE"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.sse.SSE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">threading.Thread</span></code></p>
+<p>Thread that tries to open a sse connection until it is closed</p>
+<dl class="method">
+<dt id="gateway.networking.sse.SSE.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/sse.html#SSE.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.sse.SSE.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the thread.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">nothing</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.networking.sse.SSE.connection_state">
+<code class="descname">connection_state</code><a class="headerlink" href="#gateway.networking.sse.SSE.connection_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for connection state.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">connection state</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.networking.sse.SSE.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/networking/sse.html#SSE.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.networking.sse.SSE.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try to establish a connection until the thread is closed.
+Emits the parsed events on the API.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">nothing</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">gatewayw</a></h1>
+
+
+
+<p class="blurb">Main program for the SIMplePhone Gateway.</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=quentinwendegass&repo=Diplomarbeit&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="gateway.html">gateway package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="gateway.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="gateway.core.html">gateway.core package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gateway.io.html">gateway.io package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">gateway.networking package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-gateway.networking.api">gateway.networking.api module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gateway.networking.caller">gateway.networking.caller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gateway.networking.signaling">gateway.networking.signaling module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gateway.networking.sse">gateway.networking.sse module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gateway.utils.html">gateway.utils package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pcmlib.html">pcmlib</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="gateway.html">gateway package</a><ul>
+      <li>Previous: <a href="gateway.io.sim800.html" title="previous chapter">gateway.io.sim800 package</a></li>
+      <li>Next: <a href="gateway.utils.html" title="next chapter">gateway.utils package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Quentin Wendegass.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/gateway.networking.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

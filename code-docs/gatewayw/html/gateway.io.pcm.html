@@ -1,0 +1,238 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>gateway.io.pcm package &#8212; gatewayw 0.2.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="gateway.io.sim800 package" href="gateway.io.sim800.html" />
+    <link rel="prev" title="gateway.io package" href="gateway.io.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="gateway-io-pcm-package">
+<h1>gateway.io.pcm package<a class="headerlink" href="#gateway-io-pcm-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-gateway.io.pcm.pcm">
+<span id="gateway-io-pcm-pcm-module"></span><h2>gateway.io.pcm.pcm module<a class="headerlink" href="#module-gateway.io.pcm.pcm" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gateway.io.pcm.pcm.PCM">
+<em class="property">class </em><code class="descclassname">gateway.io.pcm.pcm.</code><code class="descname">PCM</code><a class="headerlink" href="#gateway.io.pcm.pcm.PCM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Wrapper class for the c library.</p>
+<dl class="method">
+<dt id="gateway.io.pcm.pcm.PCM.disable">
+<code class="descname">disable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gateway.io.pcm.pcm.PCM.disable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.pcm.pcm.PCM.enable">
+<code class="descname">enable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gateway.io.pcm.pcm.PCM.enable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.pcm.pcm.PCM.read_frame">
+<code class="descname">read_frame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gateway.io.pcm.pcm.PCM.read_frame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.pcm.pcm.PCM.write_frame">
+<code class="descname">write_frame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gateway.io.pcm.pcm.PCM.write_frame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-gateway.io.pcm.register_control">
+<span id="gateway-io-pcm-register-control-module"></span><h2>gateway.io.pcm.register_control module<a class="headerlink" href="#module-gateway.io.pcm.register_control" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gateway.io.pcm.register_control.ModeControlRegister">
+<em class="property">class </em><code class="descclassname">gateway.io.pcm.register_control.</code><code class="descname">ModeControlRegister</code><a class="reference internal" href="_modules/gateway/io/pcm/register_control.html#ModeControlRegister"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.pcm.register_control.ModeControlRegister" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.pcm.register_control.Register" title="gateway.io.pcm.register_control.Register"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.pcm.register_control.Register</span></code></a></p>
+<dl class="attribute">
+<dt id="gateway.io.pcm.register_control.ModeControlRegister.ALB">
+<code class="descname">ALB</code><em class="property"> = 0</em><a class="headerlink" href="#gateway.io.pcm.register_control.ModeControlRegister.ALB" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.pcm.register_control.ModeControlRegister.COMPANDING">
+<code class="descname">COMPANDING</code><em class="property"> = 0</em><a class="headerlink" href="#gateway.io.pcm.register_control.ModeControlRegister.COMPANDING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.pcm.register_control.ModeControlRegister.CPB">
+<code class="descname">CPB</code><em class="property"> = 0</em><a class="headerlink" href="#gateway.io.pcm.register_control.ModeControlRegister.CPB" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.pcm.register_control.ModeControlRegister.DLB">
+<code class="descname">DLB</code><em class="property"> = 0</em><a class="headerlink" href="#gateway.io.pcm.register_control.ModeControlRegister.DLB" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.pcm.register_control.ModeControlRegister.PD">
+<code class="descname">PD</code><em class="property"> = 0</em><a class="headerlink" href="#gateway.io.pcm.register_control.ModeControlRegister.PD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.pcm.register_control.ModeControlRegister.TXZ">
+<code class="descname">TXZ</code><em class="property"> = 0</em><a class="headerlink" href="#gateway.io.pcm.register_control.ModeControlRegister.TXZ" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.pcm.register_control.ModeControlRegister.address">
+<code class="descname">address</code><a class="headerlink" href="#gateway.io.pcm.register_control.ModeControlRegister.address" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.pcm.register_control.Register">
+<em class="property">class </em><code class="descclassname">gateway.io.pcm.register_control.</code><code class="descname">Register</code><a class="reference internal" href="_modules/gateway/io/pcm/register_control.html#Register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.pcm.register_control.Register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="gateway.io.pcm.register_control.Register.read">
+<code class="descname">read</code><span class="sig-paren">(</span><em>connection</em>, <em>handle</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/pcm/register_control.html#Register.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.pcm.register_control.Register.read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.pcm.register_control.Register.write">
+<code class="descname">write</code><span class="sig-paren">(</span><em>connection</em>, <em>handle</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/pcm/register_control.html#Register.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.pcm.register_control.Register.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="gateway.io.pcm.register_control.address">
+<code class="descclassname">gateway.io.pcm.register_control.</code><code class="descname">address</code><span class="sig-paren">(</span><em>addr</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/pcm/register_control.html#address"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.pcm.register_control.address" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="gateway.io.pcm.register_control.null_bits">
+<code class="descclassname">gateway.io.pcm.register_control.</code><code class="descname">null_bits</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/pcm/register_control.html#null_bits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.pcm.register_control.null_bits" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">gatewayw</a></h1>
+
+
+
+<p class="blurb">Main program for the SIMplePhone Gateway.</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=quentinwendegass&repo=Diplomarbeit&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="gateway.html">gateway package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="gateway.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="gateway.core.html">gateway.core package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="gateway.io.html">gateway.io package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="gateway.io.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gateway.networking.html">gateway.networking package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gateway.utils.html">gateway.utils package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pcmlib.html">pcmlib</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="gateway.html">gateway package</a><ul>
+  <li><a href="gateway.io.html">gateway.io package</a><ul>
+      <li>Previous: <a href="gateway.io.html" title="previous chapter">gateway.io package</a></li>
+      <li>Next: <a href="gateway.io.sim800.html" title="next chapter">gateway.io.sim800 package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Quentin Wendegass.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/gateway.io.pcm.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

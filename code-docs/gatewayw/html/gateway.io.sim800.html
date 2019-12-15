@@ -1,0 +1,998 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>gateway.io.sim800 package &#8212; gatewayw 0.2.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="gateway.networking package" href="gateway.networking.html" />
+    <link rel="prev" title="gateway.io.pcm package" href="gateway.io.pcm.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="gateway-io-sim800-package">
+<h1>gateway.io.sim800 package<a class="headerlink" href="#gateway-io-sim800-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-gateway.io.sim800.at_command">
+<span id="gateway-io-sim800-at-command-module"></span><h2>gateway.io.sim800.at_command module<a class="headerlink" href="#module-gateway.io.sim800.at_command" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gateway.io.sim800.at_command.ATCommand">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_command.</code><code class="descname">ATCommand</code><span class="sig-paren">(</span><em>command</em>, <em>name=''</em>, <em>data=None</em>, <em>parser=&lt;gateway.io.sim800.at_parser.ATParser object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_command.html#ATCommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_command.ATCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents an AT-Command that gets send to the sim module.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-gateway.io.sim800.at_event">
+<span id="gateway-io-sim800-at-event-module"></span><h2>gateway.io.sim800.at_event module<a class="headerlink" href="#module-gateway.io.sim800.at_event" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gateway.io.sim800.at_event.ATEvent">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_event.</code><code class="descname">ATEvent</code><span class="sig-paren">(</span><em>name</em>, <em>command</em>, <em>error=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_event.html#ATEvent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_event.ATEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">asyncio.locks.Event</span></code></p>
+<p>Event encapsulates an error and a content list.</p>
+<dl class="method">
+<dt id="gateway.io.sim800.at_event.ATEvent.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_event.html#ATEvent.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_event.ATEvent.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to clear the event threadsafe in the event loop.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">nothing</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.at_event.ATEvent.set">
+<code class="descname">set</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_event.html#ATEvent.set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_event.ATEvent.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to set the event threadsafe in the event loop.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">nothing</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-gateway.io.sim800.at_parser">
+<span id="gateway-io-sim800-at-parser-module"></span><h2>gateway.io.sim800.at_parser module<a class="headerlink" href="#module-gateway.io.sim800.at_parser" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gateway.io.sim800.at_parser.ATParser">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_parser.</code><code class="descname">ATParser</code><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#ATParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.ATParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Parser with an basic implementation that does nothing.</p>
+<p>All custom parser should extend this class.</p>
+<dl class="staticmethod">
+<dt id="gateway.io.sim800.at_parser.ATParser.parse">
+<em class="property">static </em><code class="descname">parse</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#ATParser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.ATParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the received data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>content</strong> – array of received lines</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the parsed data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_parser.CallerIdentificationParser">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_parser.</code><code class="descname">CallerIdentificationParser</code><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#CallerIdentificationParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.CallerIdentificationParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.at_parser.ATParser" title="gateway.io.sim800.at_parser.ATParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.at_parser.ATParser</span></code></a></p>
+<p>Parser that returns the caller number.</p>
+<dl class="staticmethod">
+<dt id="gateway.io.sim800.at_parser.CallerIdentificationParser.parse">
+<em class="property">static </em><code class="descname">parse</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#CallerIdentificationParser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.CallerIdentificationParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the received data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>content</strong> – array of received lines</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the parsed data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_parser.IMEIParser">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_parser.</code><code class="descname">IMEIParser</code><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#IMEIParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.IMEIParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.at_parser.ATParser" title="gateway.io.sim800.at_parser.ATParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.at_parser.ATParser</span></code></a></p>
+<p>Parser that returns a IMEI object.</p>
+<dl class="staticmethod">
+<dt id="gateway.io.sim800.at_parser.IMEIParser.parse">
+<em class="property">static </em><code class="descname">parse</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#IMEIParser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.IMEIParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the received data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>content</strong> – array of received lines</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the parsed data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_parser.IMSIParser">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_parser.</code><code class="descname">IMSIParser</code><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#IMSIParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.IMSIParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.at_parser.ATParser" title="gateway.io.sim800.at_parser.ATParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.at_parser.ATParser</span></code></a></p>
+<p>Parser that returns an IMSI object.</p>
+<dl class="staticmethod">
+<dt id="gateway.io.sim800.at_parser.IMSIParser.parse">
+<em class="property">static </em><code class="descname">parse</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#IMSIParser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.IMSIParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the received data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>content</strong> – array of received lines</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the parsed data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_parser.NetworkStatusParser">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_parser.</code><code class="descname">NetworkStatusParser</code><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#NetworkStatusParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.NetworkStatusParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.at_parser.ATParser" title="gateway.io.sim800.at_parser.ATParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.at_parser.ATParser</span></code></a></p>
+<p>Parser that returns a NetworkStatus object.</p>
+<dl class="staticmethod">
+<dt id="gateway.io.sim800.at_parser.NetworkStatusParser.parse">
+<em class="property">static </em><code class="descname">parse</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#NetworkStatusParser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.NetworkStatusParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the received data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>content</strong> – array of received lines</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the parsed data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="gateway.io.sim800.at_parser.ParseError">
+<em class="property">exception </em><code class="descclassname">gateway.io.sim800.at_parser.</code><code class="descname">ParseError</code><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#ParseError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.ParseError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_parser.PinStatusParser">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_parser.</code><code class="descname">PinStatusParser</code><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#PinStatusParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.PinStatusParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.at_parser.ATParser" title="gateway.io.sim800.at_parser.ATParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.at_parser.ATParser</span></code></a></p>
+<p>Parser that returns a PinStatus object.</p>
+<dl class="staticmethod">
+<dt id="gateway.io.sim800.at_parser.PinStatusParser.parse">
+<em class="property">static </em><code class="descname">parse</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#PinStatusParser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.PinStatusParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the received data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>content</strong> – array of received lines</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the parsed data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_parser.SMSListParser">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_parser.</code><code class="descname">SMSListParser</code><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#SMSListParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.SMSListParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.at_parser.ATParser" title="gateway.io.sim800.at_parser.ATParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.at_parser.ATParser</span></code></a></p>
+<p>Parser that returns al list of SMS objects.</p>
+<dl class="staticmethod">
+<dt id="gateway.io.sim800.at_parser.SMSListParser.parse">
+<em class="property">static </em><code class="descname">parse</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#SMSListParser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.SMSListParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the received data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>content</strong> – array of received lines</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the parsed data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_parser.SignalQualityParser">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_parser.</code><code class="descname">SignalQualityParser</code><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#SignalQualityParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.SignalQualityParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.at_parser.ATParser" title="gateway.io.sim800.at_parser.ATParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.at_parser.ATParser</span></code></a></p>
+<p>Parser that returns a SignalQuality object.</p>
+<dl class="staticmethod">
+<dt id="gateway.io.sim800.at_parser.SignalQualityParser.parse">
+<em class="property">static </em><code class="descname">parse</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#SignalQualityParser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.SignalQualityParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the received data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>content</strong> – array of received lines</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the parsed data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_parser.SubscriberNumberParser">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_parser.</code><code class="descname">SubscriberNumberParser</code><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#SubscriberNumberParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.SubscriberNumberParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.at_parser.ATParser" title="gateway.io.sim800.at_parser.ATParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.at_parser.ATParser</span></code></a></p>
+<p>Parser that returns a SubscriberNumber object.</p>
+<dl class="staticmethod">
+<dt id="gateway.io.sim800.at_parser.SubscriberNumberParser.parse">
+<em class="property">static </em><code class="descname">parse</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_parser.html#SubscriberNumberParser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_parser.SubscriberNumberParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the received data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>content</strong> – array of received lines</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the parsed data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-gateway.io.sim800.at_response">
+<span id="gateway-io-sim800-at-response-module"></span><h2>gateway.io.sim800.at_response module<a class="headerlink" href="#module-gateway.io.sim800.at_response" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gateway.io.sim800.at_response.ATResponse">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_response.</code><code class="descname">ATResponse</code><a class="reference internal" href="_modules/gateway/io/sim800/at_response.html#ATResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_response.ATResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_response.CallerIdentification">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_response.</code><code class="descname">CallerIdentification</code><span class="sig-paren">(</span><em>number</em>, <em>type</em>, <em>subaddr=None</em>, <em>satype=None</em>, <em>alphaId=None</em>, <em>cli_validity=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_response.html#CallerIdentification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_response.CallerIdentification" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.at_response.ATResponse" title="gateway.io.sim800.at_response.ATResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.at_response.ATResponse</span></code></a></p>
+<p>Data class for caller identification (AT+CLIP)</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_response.IMEI">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_response.</code><code class="descname">IMEI</code><span class="sig-paren">(</span><em>imei</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_response.html#IMEI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_response.IMEI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.at_response.ATResponse" title="gateway.io.sim800.at_response.ATResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.at_response.ATResponse</span></code></a></p>
+<p>Wrapper class for IMEI.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_response.IMSI">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_response.</code><code class="descname">IMSI</code><span class="sig-paren">(</span><em>mcc</em>, <em>mnc</em>, <em>msin</em>, <em>network</em>, <em>country</em>, <em>iso</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_response.html#IMSI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_response.IMSI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.at_response.ATResponse" title="gateway.io.sim800.at_response.ATResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.at_response.ATResponse</span></code></a></p>
+<p>Data class for IMSI.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_response.NetworkStatus">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_response.</code><code class="descname">NetworkStatus</code><span class="sig-paren">(</span><em>n</em>, <em>stat</em>, <em>lac=None</em>, <em>ci=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_response.html#NetworkStatus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_response.NetworkStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.at_response.ATResponse" title="gateway.io.sim800.at_response.ATResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.at_response.ATResponse</span></code></a></p>
+<p>Data class for the network status.</p>
+<p>The attribute names are the same as in the at-commands documentation
+(<a class="reference external" href="https://www.elecrow.com/download/SIM800%20Series_AT%20Command%20Manual_V1.09.pdf">https://www.elecrow.com/download/SIM800%20Series_AT%20Command%20Manual_V1.09.pdf</a>).
+Furthermore a enum for the actual status is defined within this class.</p>
+<dl class="class">
+<dt id="gateway.io.sim800.at_response.NetworkStatus.Status">
+<em class="property">class </em><code class="descname">Status</code><a class="reference internal" href="_modules/gateway/io/sim800/at_response.html#NetworkStatus.Status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_response.NetworkStatus.Status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></p>
+<p>Enum for the network status.</p>
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.NetworkStatus.Status.Denied">
+<code class="descname">Denied</code><em class="property"> = 3</em><a class="headerlink" href="#gateway.io.sim800.at_response.NetworkStatus.Status.Denied" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.NetworkStatus.Status.NotRegistered">
+<code class="descname">NotRegistered</code><em class="property"> = 0</em><a class="headerlink" href="#gateway.io.sim800.at_response.NetworkStatus.Status.NotRegistered" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.NetworkStatus.Status.RegisteredHome">
+<code class="descname">RegisteredHome</code><em class="property"> = 1</em><a class="headerlink" href="#gateway.io.sim800.at_response.NetworkStatus.Status.RegisteredHome" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.NetworkStatus.Status.RegisteredRoaming">
+<code class="descname">RegisteredRoaming</code><em class="property"> = 5</em><a class="headerlink" href="#gateway.io.sim800.at_response.NetworkStatus.Status.RegisteredRoaming" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.NetworkStatus.Status.Searching">
+<code class="descname">Searching</code><em class="property"> = 2</em><a class="headerlink" href="#gateway.io.sim800.at_response.NetworkStatus.Status.Searching" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.NetworkStatus.Status.Unknown">
+<code class="descname">Unknown</code><em class="property"> = 4</em><a class="headerlink" href="#gateway.io.sim800.at_response.NetworkStatus.Status.Unknown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_response.PINStatus">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_response.</code><code class="descname">PINStatus</code><a class="reference internal" href="_modules/gateway/io/sim800/at_response.html#PINStatus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_response.PINStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Enum for the pin status.</p>
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.PINStatus.PHPin">
+<code class="descname">PHPin</code><em class="property"> = 'PH_SIM PIN'</em><a class="headerlink" href="#gateway.io.sim800.at_response.PINStatus.PHPin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.PINStatus.PHPuk">
+<code class="descname">PHPuk</code><em class="property"> = 'PH_SIM PUK'</em><a class="headerlink" href="#gateway.io.sim800.at_response.PINStatus.PHPuk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.PINStatus.Pin">
+<code class="descname">Pin</code><em class="property"> = 'SIM PIN'</em><a class="headerlink" href="#gateway.io.sim800.at_response.PINStatus.Pin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.PINStatus.Pin2">
+<code class="descname">Pin2</code><em class="property"> = 'SIM PIN2'</em><a class="headerlink" href="#gateway.io.sim800.at_response.PINStatus.Pin2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.PINStatus.Puk">
+<code class="descname">Puk</code><em class="property"> = 'SIM PUK'</em><a class="headerlink" href="#gateway.io.sim800.at_response.PINStatus.Puk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.PINStatus.Ready">
+<code class="descname">Ready</code><em class="property"> = 'READY'</em><a class="headerlink" href="#gateway.io.sim800.at_response.PINStatus.Ready" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_response.SMS">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_response.</code><code class="descname">SMS</code><span class="sig-paren">(</span><em>index</em>, <em>status</em>, <em>address</em>, <em>message</em>, <em>address_name=None</em>, <em>time=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_response.html#SMS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_response.SMS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.at_response.ATResponse" title="gateway.io.sim800.at_response.ATResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.at_response.ATResponse</span></code></a></p>
+<p>Data class for a sms.</p>
+<dl class="class">
+<dt id="gateway.io.sim800.at_response.SMS.Status">
+<em class="property">class </em><code class="descname">Status</code><a class="reference internal" href="_modules/gateway/io/sim800/at_response.html#SMS.Status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_response.SMS.Status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.SMS.Status.Read">
+<code class="descname">Read</code><em class="property"> = 'REC READ'</em><a class="headerlink" href="#gateway.io.sim800.at_response.SMS.Status.Read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.SMS.Status.Sent">
+<code class="descname">Sent</code><em class="property"> = 'STO SENT'</em><a class="headerlink" href="#gateway.io.sim800.at_response.SMS.Status.Sent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.SMS.Status.Unread">
+<code class="descname">Unread</code><em class="property"> = 'REC UNREAD'</em><a class="headerlink" href="#gateway.io.sim800.at_response.SMS.Status.Unread" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gateway.io.sim800.at_response.SMS.Status.Unsent">
+<code class="descname">Unsent</code><em class="property"> = 'STO UNSENT'</em><a class="headerlink" href="#gateway.io.sim800.at_response.SMS.Status.Unsent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_response.SignalQuality">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_response.</code><code class="descname">SignalQuality</code><span class="sig-paren">(</span><em>rssi</em>, <em>ber</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_response.html#SignalQuality"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_response.SignalQuality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.at_response.ATResponse" title="gateway.io.sim800.at_response.ATResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.at_response.ATResponse</span></code></a></p>
+<p>Data class for the signal quality.</p>
+<p>The attribute names are the same as in the at-commands documentation
+(<a class="reference external" href="https://www.elecrow.com/download/SIM800%20Series_AT%20Command%20Manual_V1.09.pdf">https://www.elecrow.com/download/SIM800%20Series_AT%20Command%20Manual_V1.09.pdf</a>).</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.at_response.SubscriberNumber">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.at_response.</code><code class="descname">SubscriberNumber</code><span class="sig-paren">(</span><em>number</em>, <em>type</em>, <em>alpha=None</em>, <em>speed=None</em>, <em>service=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/at_response.html#SubscriberNumber"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.at_response.SubscriberNumber" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.at_response.ATResponse" title="gateway.io.sim800.at_response.ATResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.at_response.ATResponse</span></code></a></p>
+<p>Data class for subscriber number.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-gateway.io.sim800.serial_loop">
+<span id="gateway-io-sim800-serial-loop-module"></span><h2>gateway.io.sim800.serial_loop module<a class="headerlink" href="#module-gateway.io.sim800.serial_loop" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="gateway.io.sim800.serial_loop.EchoError">
+<em class="property">exception </em><code class="descclassname">gateway.io.sim800.serial_loop.</code><code class="descname">EchoError</code><a class="reference internal" href="_modules/gateway/io/sim800/serial_loop.html#EchoError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.serial_loop.EchoError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gateway.io.sim800.serial_loop.SerialError" title="gateway.io.sim800.serial_loop.SerialError"><code class="xref py py-class docutils literal notranslate"><span class="pre">gateway.io.sim800.serial_loop.SerialError</span></code></a></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="gateway.io.sim800.serial_loop.SerialError">
+<em class="property">exception </em><code class="descclassname">gateway.io.sim800.serial_loop.</code><code class="descname">SerialError</code><a class="reference internal" href="_modules/gateway/io/sim800/serial_loop.html#SerialError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.serial_loop.SerialError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gateway.io.sim800.serial_loop.SerialLoop">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.serial_loop.</code><code class="descname">SerialLoop</code><span class="sig-paren">(</span><em>emitter</em>, <em>serial</em>, <em>debug</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/serial_loop.html#SerialLoop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.serial_loop.SerialLoop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">threading.Thread</span></code></p>
+<p>SerialLoop is a thread for communication with the sim800 module over the serial interface.</p>
+<dl class="method">
+<dt id="gateway.io.sim800.serial_loop.SerialLoop.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/serial_loop.html#SerialLoop.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.serial_loop.SerialLoop.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is there for writing commands to the serial interface and reading the response</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">returns nothing</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-gateway.io.sim800.sim800">
+<span id="gateway-io-sim800-sim800-module"></span><h2>gateway.io.sim800.sim800 module<a class="headerlink" href="#module-gateway.io.sim800.sim800" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gateway.io.sim800.sim800.Sim800">
+<em class="property">class </em><code class="descclassname">gateway.io.sim800.sim800.</code><code class="descname">Sim800</code><span class="sig-paren">(</span><em>serial_port='/dev/serial0'</em>, <em>debug=False</em>, <em>loop=&lt;_UnixSelectorEventLoop running=False closed=False debug=False&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyee._compat.CompatEventEmitter</span></code></p>
+<p>Sim800 processes AT-Commands over the serial interface</p>
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.answer_call">
+<em class="property">coroutine </em><code class="descname">answer_call</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.answer_call"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.answer_call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Answer an incoming call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes the SerialLoop thread</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">returns nothing</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.dial_number">
+<em class="property">coroutine </em><code class="descname">dial_number</code><span class="sig-paren">(</span><em>number</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.dial_number"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.dial_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call a participant.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>number</strong> (<em>str</em>) – phone number of the participant</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.enter_pin">
+<em class="property">coroutine </em><code class="descname">enter_pin</code><span class="sig-paren">(</span><em>pin</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.enter_pin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.enter_pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enter the sim card pin.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pin</strong> – pin, puk or puk2</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.hang_up_call">
+<em class="property">coroutine </em><code class="descname">hang_up_call</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.hang_up_call"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.hang_up_call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disconnect the current call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.hold_call">
+<em class="property">coroutine </em><code class="descname">hold_call</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.hold_call"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.hold_call" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.power_off">
+<em class="property">coroutine </em><code class="descname">power_off</code><span class="sig-paren">(</span><em>mode</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.power_off"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.power_off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shutdown the sim-module.</p>
+<p>Mode can be either 0 or 1
+0: Power off urgently
+1: Normal power off</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mode</strong> – mode for power off</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.request_all_sms">
+<em class="property">coroutine </em><code class="descname">request_all_sms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.request_all_sms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.request_all_sms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read all sms.</p>
+<p>Event Data: [SMS]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.request_imei">
+<em class="property">coroutine </em><code class="descname">request_imei</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.request_imei"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.request_imei" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the imei.</p>
+<p>Event Data: IMEI</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.request_imsi">
+<em class="property">coroutine </em><code class="descname">request_imsi</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.request_imsi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.request_imsi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the operator imsi.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.request_network_status">
+<em class="property">coroutine </em><code class="descname">request_network_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.request_network_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.request_network_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads the current network status.</p>
+<p>Event Data: NetworkStatus</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.request_pin_status">
+<em class="property">coroutine </em><code class="descname">request_pin_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.request_pin_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.request_pin_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the pin status of the sim card.</p>
+<p>Event Data: PinStatus</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.request_signal_quality">
+<em class="property">coroutine </em><code class="descname">request_signal_quality</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.request_signal_quality"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.request_signal_quality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the signal quality.</p>
+<p>Event Data: SignalQuality</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.request_subscriber_number">
+<em class="property">coroutine </em><code class="descname">request_subscriber_number</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.request_subscriber_number"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.request_subscriber_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the subscriber number and additional parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.request_unread_sms">
+<em class="property">coroutine </em><code class="descname">request_unread_sms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.request_unread_sms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.request_unread_sms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read all unread sms.</p>
+<p>Event Data: [SMS]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.reset_default_configuration">
+<em class="property">coroutine </em><code class="descname">reset_default_configuration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.reset_default_configuration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.reset_default_configuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset sim-module to default configuration.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.resume_call">
+<em class="property">coroutine </em><code class="descname">resume_call</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.resume_call"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.resume_call" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.send_sms">
+<em class="property">coroutine </em><code class="descname">send_sms</code><span class="sig-paren">(</span><em>number</em>, <em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.send_sms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.send_sms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a sms to a participant.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>number</strong> (<em>str</em>) – phone number of the participant</li>
+<li><strong>text</strong> (<em>str</em>) – message of the sms</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">event</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.set_caller_identification_mode">
+<em class="property">coroutine </em><code class="descname">set_caller_identification_mode</code><span class="sig-paren">(</span><em>mode</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.set_caller_identification_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.set_caller_identification_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the caller identification mode.</p>
+<p>0: No caller identification
+1: Get caller identification on ring</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mode</strong> (<em>int</em>) – caller identification mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.set_echo_mode">
+<em class="property">coroutine </em><code class="descname">set_echo_mode</code><span class="sig-paren">(</span><em>mode</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.set_echo_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.set_echo_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the echo mode.</p>
+<p>0: Echo mode off
+1: Echo mode on</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mode</strong> (<em>int</em>) – echo mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.set_error_mode">
+<em class="property">coroutine </em><code class="descname">set_error_mode</code><span class="sig-paren">(</span><em>mode</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.set_error_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.set_error_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the error mode.</p>
+<p>0: Disable CME error
+1: Enable CME error with error codes
+2: Enable CME error with verbose message</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mode</strong> (<em>int</em>) – error mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.set_sms_mode">
+<em class="property">coroutine </em><code class="descname">set_sms_mode</code><span class="sig-paren">(</span><em>mode=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.set_sms_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.set_sms_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the sms mode.</p>
+<p>Mode can be either 0 or 1
+0: PDU mode
+1: Text mode</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mode</strong> (<em>int</em>) – sms mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.setup">
+<em class="property">coroutine </em><code class="descname">setup</code><span class="sig-paren">(</span><em>pin=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup the module to return error codes and set sms commands to text mode.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">nothing</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.transmit_dtmf_tone">
+<em class="property">coroutine </em><code class="descname">transmit_dtmf_tone</code><span class="sig-paren">(</span><em>tone</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.transmit_dtmf_tone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.transmit_dtmf_tone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transmits one ore more dtmf tones.
+Supported characters: 0-9, #,*, A-D</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tone</strong> (<em>str</em>) – tones</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gateway.io.sim800.sim800.Sim800.write">
+<em class="property">coroutine </em><code class="descname">write</code><span class="sig-paren">(</span><em>command</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the command to the serial interface.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>command</strong> – command that should be written to the serial interface</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">returns the response event if no callback is set on the command</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="gateway.io.sim800.sim800.Sim800Error">
+<em class="property">exception </em><code class="descclassname">gateway.io.sim800.sim800.</code><code class="descname">Sim800Error</code><a class="reference internal" href="_modules/gateway/io/sim800/sim800.html#Sim800Error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gateway.io.sim800.sim800.Sim800Error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">gatewayw</a></h1>
+
+
+
+<p class="blurb">Main program for the SIMplePhone Gateway.</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=quentinwendegass&repo=Diplomarbeit&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="gateway.html">gateway package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="gateway.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="gateway.core.html">gateway.core package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="gateway.io.html">gateway.io package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="gateway.io.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gateway.networking.html">gateway.networking package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gateway.utils.html">gateway.utils package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pcmlib.html">pcmlib</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="gateway.html">gateway package</a><ul>
+  <li><a href="gateway.io.html">gateway.io package</a><ul>
+      <li>Previous: <a href="gateway.io.pcm.html" title="previous chapter">gateway.io.pcm package</a></li>
+      <li>Next: <a href="gateway.networking.html" title="next chapter">gateway.networking package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Quentin Wendegass.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/gateway.io.sim800.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

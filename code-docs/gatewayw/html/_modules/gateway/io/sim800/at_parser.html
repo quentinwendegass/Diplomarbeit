@@ -1,0 +1,300 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>gateway.io.sim800.at_parser &#8212; gatewayw 0.2.0 documentation</title>
+    <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for gateway.io.sim800.at_parser</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">import</span> <span class="nn">gateway.utils</span> <span class="k">as</span> <span class="nn">utils</span>
+<span class="kn">from</span> <span class="nn">gateway.io.sim800.at_response</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">gateway.core.config</span> <span class="kn">import</span> <span class="n">get_apn_config_path</span>
+
+
+<div class="viewcode-block" id="ParseError"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.ParseError">[docs]</a><span class="k">class</span> <span class="nc">ParseError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>  <span class="c1"># TODO: Raise error on failure</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="ATParser"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.ATParser">[docs]</a><span class="k">class</span> <span class="nc">ATParser</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parser with an basic implementation that does nothing.</span>
+
+<span class="sd">    All custom parser should extend this class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ATParser.parse"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.ATParser.parse">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parses the received data.</span>
+
+<span class="sd">        :param content: array of received lines</span>
+<span class="sd">        :return: the parsed data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">None</span></div></div>
+
+
+<div class="viewcode-block" id="SMSListParser"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.SMSListParser">[docs]</a><span class="k">class</span> <span class="nc">SMSListParser</span><span class="p">(</span><span class="n">ATParser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parser that returns al list of SMS objects.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SMSListParser.parse"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.SMSListParser.parse">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+        <span class="n">sms</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Every second line represents the information of the sms. The other line is the message of the sms.</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">content</span><span class="p">[::</span><span class="mi">2</span><span class="p">]):</span>
+            <span class="c1"># Remove the command name from the string and split the data</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">split_str</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
+            <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+            <span class="c1"># Add a new sms object to the list</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">SMS</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">content</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span>
+                <span class="n">s</span><span class="o">.</span><span class="n">address_name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span>
+                <span class="n">time_str</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+                <span class="c1"># Get the index where the timezone starts</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">zone_index</span> <span class="o">=</span> <span class="n">time_str</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">zone_index</span> <span class="o">=</span> <span class="n">time_str</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="n">zone_index</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_str</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+                <span class="c1"># Convert the timestamp to a datetime object without the timezone</span>
+                <span class="n">s</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">time_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">zone_index</span><span class="p">],</span> <span class="s1">&#39;%y/%m/</span><span class="si">%d</span><span class="s1">,%H:%M:%S&#39;</span><span class="p">)</span>
+
+            <span class="n">sms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sms</span></div></div>
+
+
+<div class="viewcode-block" id="NetworkStatusParser"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.NetworkStatusParser">[docs]</a><span class="k">class</span> <span class="nc">NetworkStatusParser</span><span class="p">(</span><span class="n">ATParser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parser that returns a NetworkStatus object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="NetworkStatusParser.parse"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.NetworkStatusParser.parse">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">split_str</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
+
+        <span class="n">status</span> <span class="o">=</span> <span class="n">NetworkStatus</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()),</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">status</span><span class="o">.</span><span class="n">lac</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">status</span><span class="o">.</span><span class="n">ci</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">status</span></div></div>
+
+
+<div class="viewcode-block" id="SignalQualityParser"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.SignalQualityParser">[docs]</a><span class="k">class</span> <span class="nc">SignalQualityParser</span><span class="p">(</span><span class="n">ATParser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parser that returns a SignalQuality object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SignalQualityParser.parse"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.SignalQualityParser.parse">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">split_str</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
+        <span class="k">return</span> <span class="n">SignalQuality</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()),</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span></div></div>
+
+
+<div class="viewcode-block" id="PinStatusParser"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.PinStatusParser">[docs]</a><span class="k">class</span> <span class="nc">PinStatusParser</span><span class="p">(</span><span class="n">ATParser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parser that returns a PinStatus object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="PinStatusParser.parse"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.PinStatusParser.parse">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">PINStatus</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span></div></div>
+
+
+<div class="viewcode-block" id="IMEIParser"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.IMEIParser">[docs]</a><span class="k">class</span> <span class="nc">IMEIParser</span><span class="p">(</span><span class="n">ATParser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parser that returns a IMEI object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="IMEIParser.parse"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.IMEIParser.parse">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">IMEI</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div></div>
+
+
+<div class="viewcode-block" id="SubscriberNumberParser"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.SubscriberNumberParser">[docs]</a><span class="k">class</span> <span class="nc">SubscriberNumberParser</span><span class="p">(</span><span class="n">ATParser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parser that returns a SubscriberNumber object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SubscriberNumberParser.parse"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.SubscriberNumberParser.parse">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">split_str</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
+
+        <span class="n">number</span> <span class="o">=</span> <span class="n">SubscriberNumber</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+
+        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+            <span class="n">number</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="n">number</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">number</span><span class="o">.</span><span class="n">service</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">number</span></div></div>
+
+
+<div class="viewcode-block" id="IMSIParser"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.IMSIParser">[docs]</a><span class="k">class</span> <span class="nc">IMSIParser</span><span class="p">(</span><span class="n">ATParser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parser that returns an IMSI object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="IMSIParser.parse"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.IMSIParser.parse">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+        <span class="n">mcc</span> <span class="o">=</span> <span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">mnc</span> <span class="o">=</span> <span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+        <span class="n">msin</span> <span class="o">=</span> <span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">5</span><span class="p">:]</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">get_apn_config_path</span><span class="p">())</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+            <span class="n">country</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">iso</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">network</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">if</span> <span class="n">mcc</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">country</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">mcc</span><span class="p">][</span><span class="s1">&#39;country&#39;</span><span class="p">]</span>
+                <span class="n">iso</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">mcc</span><span class="p">][</span><span class="s1">&#39;iso&#39;</span><span class="p">]</span>
+
+                <span class="k">if</span> <span class="n">mnc</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">mcc</span><span class="p">]:</span>
+                    <span class="n">network</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">mcc</span><span class="p">][</span><span class="n">mnc</span><span class="p">]</span>
+
+            <span class="k">return</span> <span class="n">IMSI</span><span class="p">(</span><span class="n">mcc</span><span class="p">,</span> <span class="n">mnc</span><span class="p">,</span> <span class="n">msin</span><span class="p">,</span> <span class="n">network</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">country</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">iso</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="CallerIdentificationParser"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.CallerIdentificationParser">[docs]</a><span class="k">class</span> <span class="nc">CallerIdentificationParser</span><span class="p">(</span><span class="n">ATParser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parser that returns the caller number.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CallerIdentificationParser.parse"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.at_parser.CallerIdentificationParser.parse">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">split_str</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">CallerIdentification</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span>
+                                        <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span> <span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">5</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">CallerIdentification</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">gatewayw</a></h1>
+
+
+
+<p class="blurb">Main program for the SIMplePhone Gateway.</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=quentinwendegass&repo=Diplomarbeit&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gateway.html">gateway package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pcmlib.html">pcmlib</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Quentin Wendegass.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

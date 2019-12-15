@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>CallKitManager Class Reference</title>
+    <link rel='stylesheet' type='text/css' href='../css/jazzy.css' />
+    <link rel='stylesheet' type='text/css' href='../css/highlight.css' />
+    <meta charset='utf-8'>
+    <script src='../js/jquery.min.js' defer></script>
+    <script src='../js/jazzy.js' defer></script>
+  </head>
+  <body>
+
+    <a name='//apple_ref/swift/Class/CallKitManager' class='dashAnchor'></a>
+
+    <a title='CallKitManager Class Reference'></a>
+
+    <header class='header'>
+      <p class='header-col header-col--primary'>
+        <a class='header-link' href='../index.html'>
+          SIMplePhoneKit Docs
+        </a>
+         (50% documented)
+      </p>
+    
+    
+    </header>
+
+    <p class='breadcrumbs'>
+      <a class='breadcrumb' href='../index.html'>SIMplePhoneKit Reference</a>
+      <img class='carat' src='../img/carat.png' />
+      CallKitManager Class Reference
+    </p>
+
+    <div class='content-wrapper'>
+      <nav class='navigation'>
+        <ul class='nav-groups'>
+          <li class='nav-group-name'>
+            <a class='nav-group-name-link' href='../Classes.html'>Classes</a>
+            <ul class='nav-group-tasks'>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/APIClient.html'>APIClient</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/APIClient/GatewayPushEvent.html'>– GatewayPushEvent</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/BLESetupManager.html'>BLESetupManager</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/BLESetupManager/SetupError.html'>– SetupError</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/BLESetupManager/Status.html'>– Status</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/CallKitManager.html'>CallKitManager</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/CallKitManager/CallEndReason.html'>– CallEndReason</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPAccount.html'>SPAccount</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPChat.html'>SPChat</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPDevice.html'>SPDevice</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPGateway.html'>SPGateway</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPManager.html'>SPManager</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPManager/SPKeychainEnvironment.html'>– SPKeychainEnvironment</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPManager/SPCloudSharingError.html'>– SPCloudSharingError</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPManager/GatewayError.html'>– GatewayError</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPMessage.html'>SPMessage</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPMessage/Status.html'>– Status</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPMessage/Direction.html'>– Direction</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPNetwork.html'>SPNetwork</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPNumber.html'>SPNumber</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPRecentCall.html'>SPRecentCall</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPRecentCall/Direction.html'>– Direction</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPVoicemail.html'>SPVoicemail</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SignalingClient.html'>SignalingClient</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SignalingClient/SignalingType.html'>– SignalingType</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/WebRTCClient.html'>WebRTCClient</a>
+              </li>
+            </ul>
+          </li>
+          <li class='nav-group-name'>
+            <a class='nav-group-name-link' href='../Enumerations.html'>Enumerations</a>
+            <ul class='nav-group-tasks'>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Enums/APIError.html'>APIError</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Enums/SignalingClientError.html'>SignalingClientError</a>
+              </li>
+            </ul>
+          </li>
+          <li class='nav-group-name'>
+            <a class='nav-group-name-link' href='../Extensions.html'>Extensions</a>
+            <ul class='nav-group-tasks'>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Extensions/RTCSessionDescription.html'>RTCSessionDescription</a>
+              </li>
+            </ul>
+          </li>
+          <li class='nav-group-name'>
+            <a class='nav-group-name-link' href='../Protocols.html'>Protocols</a>
+            <ul class='nav-group-tasks'>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Protocols/BLESetupManagerDelegate.html'>BLESetupManagerDelegate</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Protocols/CallKitManagerDelegate.html'>CallKitManagerDelegate</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Protocols/SPManagerDelegate.html'>SPManagerDelegate</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Protocols/WebRTCClientDelegate.html'>WebRTCClientDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class='main-content'>
+
+        <section class='section'>
+          <div class='section-content'>
+            <h1>CallKitManager</h1>
+              <div class='declaration'>
+                <div class='language'>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CallKitManager</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>Manager used to interact with CallKit</p>
+
+          </div>
+        </section>
+
+        <section class='section'>
+          <div class='section-content'>
+            <div class="task-group">
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC7ManagerC6sharedACvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/shared" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC7ManagerC6sharedACvpZ">shared</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Shared instance of the CallKitManager</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">shared</span><span class="p">:</span> <span class="kt">CallKitManager</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC7ManagerC8delegateAA0dcE8Delegate_pSgvp"></a>
+                    <a name="//apple_ref/swift/Property/delegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC7ManagerC8delegateAA0dcE8Delegate_pSgvp">delegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reference to the class that implemented the delegate protocol</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CallKitManagerDelegate.html">CallKitManagerDelegate</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC7ManagerC014reportOutgoingD02to2onyAA8SPNumberC_AA9SPGatewayCtF"></a>
+                    <a name="//apple_ref/swift/Method/reportOutgoingCall(to:on:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC7ManagerC014reportOutgoingD02to2onyAA8SPNumberC_AA9SPGatewayCtF">reportOutgoingCall(to:on:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reports an outgoing call to the system via CallKit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">reportOutgoingCall</span><span class="p">(</span><span class="n">to</span> <span class="nv">number</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPNumber.html">SPNumber</a></span><span class="p">,</span> <span class="n">on</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>number</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>SPNumber of the recipient of the call</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>gateway</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>SPGateway that is used for the call</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC7ManagerC014reportIncomingD04from2onyAA8SPNumberC_AA9SPGatewayCtF"></a>
+                    <a name="//apple_ref/swift/Method/reportIncomingCall(from:on:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC7ManagerC014reportIncomingD04from2onyAA8SPNumberC_AA9SPGatewayCtF">reportIncomingCall(from:on:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reports an incoming call to the system via CallKit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">reportIncomingCall</span><span class="p">(</span><span class="n">from</span> <span class="nv">number</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPNumber.html">SPNumber</a></span><span class="p">,</span> <span class="n">on</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>number</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>SPNumber of the calling party</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>gateway</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>SPGateway that is receiving the call</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC7ManagerC0D9EndReasonO"></a>
+                    <a name="//apple_ref/swift/Enum/CallEndReason" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC7ManagerC0D9EndReasonO">CallEndReason</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enum representing a reason why the call ended</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">CallEndReason</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                          <a href="../Classes/CallKitManager/CallEndReason.html" class="button">See more</a>
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC7ManagerC06reportD5Ended7because2onyAC0D9EndReasonO_AA9SPGatewayCtF"></a>
+                    <a name="//apple_ref/swift/Method/reportCallEnded(because:on:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC7ManagerC06reportD5Ended7because2onyAC0D9EndReasonO_AA9SPGatewayCtF">reportCallEnded(because:on:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reports to the system (CallKit) that the call was ended</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">reportCallEnded</span><span class="p">(</span><span class="n">because</span> <span class="nv">reason</span><span class="p">:</span> <span class="kt"><a href="../Classes/CallKitManager/CallEndReason.html">CallEndReason</a></span><span class="p">,</span> <span class="n">on</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reason</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A CallEndReason why the call was ended</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>gateway</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The SPGateway used for the call</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)providerDidBegin:"></a>
+                    <a name="//apple_ref/swift/Method/providerDidBegin(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)providerDidBegin:">providerDidBegin(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the CallKit provider begins</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">providerDidBegin</span><span class="p">(</span><span class="n">_</span> <span class="nv">provider</span><span class="p">:</span> <span class="kt">CXProvider</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>provider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The telephony provider (CXProvider)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)providerDidReset:"></a>
+                    <a name="//apple_ref/swift/Method/providerDidReset(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)providerDidReset:">providerDidReset(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the CallKit provider is reset</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">providerDidReset</span><span class="p">(</span><span class="n">_</span> <span class="nv">provider</span><span class="p">:</span> <span class="kt">CXProvider</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>provider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The telephony provider (CXProvider)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:performAnswerCallAction:"></a>
+                    <a name="//apple_ref/swift/Method/provider(_:perform:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:performAnswerCallAction:">provider(_:perform:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the CallKit provider performs the specified answer call action</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">provider</span><span class="p">(</span><span class="n">_</span> <span class="nv">provider</span><span class="p">:</span> <span class="kt">CXProvider</span><span class="p">,</span> <span class="n">perform</span> <span class="nv">action</span><span class="p">:</span> <span class="kt">CXAnswerCallAction</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>provider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The telephony provider (CXProvider)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>action</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The answer call action</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:performEndCallAction:"></a>
+                    <a name="//apple_ref/swift/Method/provider(_:perform:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:performEndCallAction:">provider(_:perform:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the CallKit provider performs the specified end call action</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">provider</span><span class="p">(</span><span class="n">_</span> <span class="nv">provider</span><span class="p">:</span> <span class="kt">CXProvider</span><span class="p">,</span> <span class="n">perform</span> <span class="nv">action</span><span class="p">:</span> <span class="kt">CXEndCallAction</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>provider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The telephony provider (CXProvider)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>action</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The end call action</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:performStartCallAction:"></a>
+                    <a name="//apple_ref/swift/Method/provider(_:perform:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:performStartCallAction:">provider(_:perform:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the CallKit provider performs the specified start call action</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">provider</span><span class="p">(</span><span class="n">_</span> <span class="nv">provider</span><span class="p">:</span> <span class="kt">CXProvider</span><span class="p">,</span> <span class="n">perform</span> <span class="nv">action</span><span class="p">:</span> <span class="kt">CXStartCallAction</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>provider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The telephony provider (CXProvider)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>action</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The start call action</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:performSetHeldCallAction:"></a>
+                    <a name="//apple_ref/swift/Method/provider(_:perform:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:performSetHeldCallAction:">provider(_:perform:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the CallKit provider performs the specified set held call action</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">provider</span><span class="p">(</span><span class="n">_</span> <span class="nv">provider</span><span class="p">:</span> <span class="kt">CXProvider</span><span class="p">,</span> <span class="n">perform</span> <span class="nv">action</span><span class="p">:</span> <span class="kt">CXSetHeldCallAction</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>provider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The telephony provider (CXProvider)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>action</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The set held call action</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:performPlayDTMFCallAction:"></a>
+                    <a name="//apple_ref/swift/Method/provider(_:perform:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:performPlayDTMFCallAction:">provider(_:perform:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the provider performs the specified play DTMF (dual tone multifrequency) call action</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">provider</span><span class="p">(</span><span class="n">_</span> <span class="nv">provider</span><span class="p">:</span> <span class="kt">CXProvider</span><span class="p">,</span> <span class="n">perform</span> <span class="nv">action</span><span class="p">:</span> <span class="kt">CXPlayDTMFCallAction</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>provider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The telephony provider (CXProvider)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>action</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The play DTMF call action</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:performSetMutedCallAction:"></a>
+                    <a name="//apple_ref/swift/Method/provider(_:perform:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:performSetMutedCallAction:">provider(_:perform:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the provider performs the specified set muted call action</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">provider</span><span class="p">(</span><span class="n">_</span> <span class="nv">provider</span><span class="p">:</span> <span class="kt">CXProvider</span><span class="p">,</span> <span class="n">perform</span> <span class="nv">action</span><span class="p">:</span> <span class="kt">CXSetMutedCallAction</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>provider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The telephony provider (CXProvider)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>action</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The set muted call action</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:didActivateAudioSession:"></a>
+                    <a name="//apple_ref/swift/Method/provider(_:didActivate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:didActivateAudioSession:">provider(_:didActivate:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the provider’s audio session is activated</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">provider</span><span class="p">(</span><span class="n">_</span> <span class="nv">provider</span><span class="p">:</span> <span class="kt">CXProvider</span><span class="p">,</span> <span class="n">didActivate</span> <span class="nv">audioSession</span><span class="p">:</span> <span class="kt">AVAudioSession</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>provider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The telephony provider (CXProvider)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>audioSession</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The audio session that was activated</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:didDeactivateAudioSession:"></a>
+                    <a name="//apple_ref/swift/Method/provider(_:didDeactivate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SIMplePhoneKit@objc(cs)CallKitManager(im)provider:didDeactivateAudioSession:">provider(_:didDeactivate:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the provider’s audio session is deactivated</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">provider</span><span class="p">(</span><span class="n">_</span> <span class="nv">provider</span><span class="p">:</span> <span class="kt">CXProvider</span><span class="p">,</span> <span class="n">didDeactivate</span> <span class="nv">audioSession</span><span class="p">:</span> <span class="kt">AVAudioSession</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h5>Parameters</h5>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>provider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The telephony provider (CXProvider)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>audioSession</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The audio session that was deactivated</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class='footer'>
+      <p>© 2019 <a class="link" href="https://github.com/lukaskuster" target="_blank" rel="external">Lukas Kuster</a>. All rights reserved.</p>
+      <p>Generated by <a class='link' href='https://github.com/realm/jazzy' target='_blank' rel='external'>jazzy ♪♫ v0.9.5</a>, a <a class='link' href='http://realm.io' target='_blank' rel='external'>Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

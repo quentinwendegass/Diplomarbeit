@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>SPManager Class Reference</title>
+    <link rel='stylesheet' type='text/css' href='../css/jazzy.css' />
+    <link rel='stylesheet' type='text/css' href='../css/highlight.css' />
+    <meta charset='utf-8'>
+    <script src='../js/jquery.min.js' defer></script>
+    <script src='../js/jazzy.js' defer></script>
+  </head>
+  <body>
+
+    <a name='//apple_ref/swift/Class/SPManager' class='dashAnchor'></a>
+
+    <a title='SPManager Class Reference'></a>
+
+    <header class='header'>
+      <p class='header-col header-col--primary'>
+        <a class='header-link' href='../index.html'>
+          SIMplePhoneKit Docs
+        </a>
+         (50% documented)
+      </p>
+    
+    
+    </header>
+
+    <p class='breadcrumbs'>
+      <a class='breadcrumb' href='../index.html'>SIMplePhoneKit Reference</a>
+      <img class='carat' src='../img/carat.png' />
+      SPManager Class Reference
+    </p>
+
+    <div class='content-wrapper'>
+      <nav class='navigation'>
+        <ul class='nav-groups'>
+          <li class='nav-group-name'>
+            <a class='nav-group-name-link' href='../Classes.html'>Classes</a>
+            <ul class='nav-group-tasks'>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/APIClient.html'>APIClient</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/APIClient/GatewayPushEvent.html'>– GatewayPushEvent</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/BLESetupManager.html'>BLESetupManager</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/BLESetupManager/SetupError.html'>– SetupError</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/BLESetupManager/Status.html'>– Status</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/CallKitManager.html'>CallKitManager</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/CallKitManager/CallEndReason.html'>– CallEndReason</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPAccount.html'>SPAccount</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPChat.html'>SPChat</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPDevice.html'>SPDevice</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPGateway.html'>SPGateway</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPManager.html'>SPManager</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPManager/SPKeychainEnvironment.html'>– SPKeychainEnvironment</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPManager/SPCloudSharingError.html'>– SPCloudSharingError</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPManager/GatewayError.html'>– GatewayError</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPMessage.html'>SPMessage</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPMessage/Status.html'>– Status</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPMessage/Direction.html'>– Direction</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPNetwork.html'>SPNetwork</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPNumber.html'>SPNumber</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPRecentCall.html'>SPRecentCall</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPRecentCall/Direction.html'>– Direction</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SPVoicemail.html'>SPVoicemail</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SignalingClient.html'>SignalingClient</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/SignalingClient/SignalingType.html'>– SignalingType</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Classes/WebRTCClient.html'>WebRTCClient</a>
+              </li>
+            </ul>
+          </li>
+          <li class='nav-group-name'>
+            <a class='nav-group-name-link' href='../Enumerations.html'>Enumerations</a>
+            <ul class='nav-group-tasks'>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Enums/APIError.html'>APIError</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Enums/SignalingClientError.html'>SignalingClientError</a>
+              </li>
+            </ul>
+          </li>
+          <li class='nav-group-name'>
+            <a class='nav-group-name-link' href='../Extensions.html'>Extensions</a>
+            <ul class='nav-group-tasks'>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Extensions/RTCSessionDescription.html'>RTCSessionDescription</a>
+              </li>
+            </ul>
+          </li>
+          <li class='nav-group-name'>
+            <a class='nav-group-name-link' href='../Protocols.html'>Protocols</a>
+            <ul class='nav-group-tasks'>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Protocols/BLESetupManagerDelegate.html'>BLESetupManagerDelegate</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Protocols/CallKitManagerDelegate.html'>CallKitManagerDelegate</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Protocols/SPManagerDelegate.html'>SPManagerDelegate</a>
+              </li>
+              <li class='nav-group-task'>
+                <a class='nav-group-task-link' href='../Protocols/WebRTCClientDelegate.html'>WebRTCClientDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class='main-content'>
+
+        <section class='section'>
+          <div class='section-content'>
+            <h1>SPManager</h1>
+              <div class='declaration'>
+                <div class='language'>
+                  <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">SPManager</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt"><a href="../Protocols/CallKitManagerDelegate.html">CallKitManagerDelegate</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </div>
+        </section>
+
+        <section class='section'>
+          <div class='section-content'>
+            <div class="task-group">
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC6sharedACvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/shared" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC6sharedACvpZ">shared</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">shared</span><span class="p">:</span> <span class="kt">SPManager</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC8delegateAA0D8Delegate_pSgvp"></a>
+                    <a name="//apple_ref/swift/Property/delegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC8delegateAA0D8Delegate_pSgvp">delegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SPManagerDelegate.html">SPManagerDelegate</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Account"></a>
+                <a name="//apple_ref/swift/Section/Account" class="dashAnchor"></a>
+                <a href="#/Account">
+                  <h3 class="section-name">Account</h3>
+                </a>
+              </div>
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC18registerNewAccount_19keychainEnvironment10completionyAA9SPAccountC_AC010SPKeychainI0OySb_AA8APIErrorOSgtctF"></a>
+                    <a name="//apple_ref/swift/Method/registerNewAccount(_:keychainEnvironment:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC18registerNewAccount_19keychainEnvironment10completionyAA9SPAccountC_AC010SPKeychainI0OySb_AA8APIErrorOSgtctF">registerNewAccount(_:keychainEnvironment:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">registerNewAccount</span><span class="p">(</span><span class="n">_</span> <span class="nv">account</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPAccount.html">SPAccount</a></span><span class="p">,</span> <span class="nv">keychainEnvironment</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPManager/SPKeychainEnvironment.html">SPKeychainEnvironment</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Enums/APIError.html">APIError</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/iCloud%20Related"></a>
+                <a name="//apple_ref/swift/Section/iCloud Related" class="dashAnchor"></a>
+                <a href="#/iCloud%20Related">
+                  <h3 class="section-name">iCloud Related</h3>
+                </a>
+              </div>
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC21SPKeychainEnvironmentO"></a>
+                    <a name="//apple_ref/swift/Enum/SPKeychainEnvironment" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC21SPKeychainEnvironmentO">SPKeychainEnvironment</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SPKeychainEnvironment</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                          <a href="../Classes/SPManager/SPKeychainEnvironment.html" class="button">See more</a>
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC19SPCloudSharingErrorO"></a>
+                    <a name="//apple_ref/swift/Enum/SPCloudSharingError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC19SPCloudSharingErrorO">SPCloudSharingError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SPCloudSharingError</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                          <a href="../Classes/SPManager/SPCloudSharingError.html" class="button">See more</a>
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC22checkUsernameWithCloud_10completionySS_yAC19SPCloudSharingErrorOSgctF"></a>
+                    <a name="//apple_ref/swift/Method/checkUsernameWithCloud(_:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC22checkUsernameWithCloud_10completionySS_yAC19SPCloudSharingErrorOSgctF">checkUsernameWithCloud(_:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">checkUsernameWithCloud</span><span class="p">(</span><span class="n">_</span> <span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPManager/SPCloudSharingError.html">SPCloudSharingError</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC11getUsernameSSSgyF"></a>
+                    <a name="//apple_ref/swift/Method/getUsername()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC11getUsernameSSSgyF">getUsername()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getUsername</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC9loginUser8username8password19keychainEnvironment10completionySS_SSAC010SPKeychainJ0OySb_AA8APIErrorOSgtctF"></a>
+                    <a name="//apple_ref/swift/Method/loginUser(username:password:keychainEnvironment:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC9loginUser8username8password19keychainEnvironment10completionySS_SSAC010SPKeychainJ0OySb_AA8APIErrorOSgtctF">loginUser(username:password:keychainEnvironment:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">loginUser</span><span class="p">(</span><span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">keychainEnvironment</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPManager/SPKeychainEnvironment.html">SPKeychainEnvironment</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Enums/APIError.html">APIError</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC10logoutUser14reportToServer12onAllDevices10completionySb_SbySb_AA8APIErrorOSgtctF"></a>
+                    <a name="//apple_ref/swift/Method/logoutUser(reportToServer:onAllDevices:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC10logoutUser14reportToServer12onAllDevices10completionySb_SbySb_AA8APIErrorOSgtctF">logoutUser(reportToServer:onAllDevices:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">logoutUser</span><span class="p">(</span><span class="nv">reportToServer</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">onAllDevices</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Enums/APIError.html">APIError</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Call%20handling"></a>
+                <a name="//apple_ref/swift/Section/Call handling" class="dashAnchor"></a>
+                <a href="#/Call%20handling">
+                  <h3 class="section-name">Call handling</h3>
+                </a>
+              </div>
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC8makeCall2to2on10completionyAA8SPNumberC_AA9SPGatewayCys5Error_pSgctF"></a>
+                    <a name="//apple_ref/swift/Method/makeCall(to:on:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC8makeCall2to2on10completionyAA8SPNumberC_AA9SPGatewayCys5Error_pSgctF">makeCall(to:on:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeCall</span><span class="p">(</span><span class="n">to</span> <span class="nv">number</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPNumber.html">SPNumber</a></span><span class="p">,</span> <span class="n">on</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC10hangUpCall3via06notifygC010completionyAA9SPGatewayC_Sbys5Error_pSgctF"></a>
+                    <a name="//apple_ref/swift/Method/hangUpCall(via:notifyCallKit:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC10hangUpCall3via06notifygC010completionyAA9SPGatewayC_Sbys5Error_pSgctF">hangUpCall(via:notifyCallKit:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hangUpCall</span><span class="p">(</span><span class="n">via</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="nv">notifyCallKit</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@M@SIMplePhoneKit@objc(cs)SPManager(im)handleVoIPToken:"></a>
+                    <a name="//apple_ref/swift/Method/handleVoIPToken(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SIMplePhoneKit@objc(cs)SPManager(im)handleVoIPToken:">handleVoIPToken(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">handleVoIPToken</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@M@SIMplePhoneKit@objc(cs)SPManager(im)handleVoIPNotification:"></a>
+                    <a name="//apple_ref/swift/Method/handleVoIPNotification(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SIMplePhoneKit@objc(cs)SPManager(im)handleVoIPNotification:">handleVoIPNotification(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">handleVoIPNotification</span><span class="p">(</span><span class="n">_</span> <span class="nv">pushPayload</span><span class="p">:</span> <span class="kt">NSDictionary</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC12GatewayErrorO"></a>
+                    <a name="//apple_ref/swift/Enum/GatewayError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC12GatewayErrorO">GatewayError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">GatewayError</span> <span class="p">:</span> <span class="kt">LocalizedError</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                          <a href="../Classes/SPManager/GatewayError.html" class="button">See more</a>
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC18handleGatewayError4code7messageySi_SStF"></a>
+                    <a name="//apple_ref/swift/Method/handleGatewayError(code:message:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC18handleGatewayError4code7messageySi_SStF">handleGatewayError(code:message:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">handleGatewayError</span><span class="p">(</span><span class="nv">code</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE0017didAcceptIncomingD11FromGateway4with10completionyAA9SPGatewayC_AA8SPNumberCySbctF"></a>
+                    <a name="//apple_ref/swift/Method/callKitManager(didAcceptIncomingCallFromGateway:with:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE0017didAcceptIncomingD11FromGateway4with10completionyAA9SPGatewayC_AA8SPNumberCySbctF">callKitManager(didAcceptIncomingCallFromGateway:with:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">callKitManager</span><span class="p">(</span><span class="n">didAcceptIncomingCallFromGateway</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="n">with</span> <span class="nv">caller</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPNumber.html">SPNumber</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE0018didDeclineIncomingD11FromGateway010withRecentD4Item10completionyAA9SPGatewayC_AA08SPRecentD0CySbctF"></a>
+                    <a name="//apple_ref/swift/Method/callKitManager(didDeclineIncomingCallFromGateway:withRecentCallItem:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE0018didDeclineIncomingD11FromGateway010withRecentD4Item10completionyAA9SPGatewayC_AA08SPRecentD0CySbctF">callKitManager(didDeclineIncomingCallFromGateway:withRecentCallItem:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">callKitManager</span><span class="p">(</span><span class="n">didDeclineIncomingCallFromGateway</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="n">withRecentCallItem</span> <span class="nv">recentItem</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPRecentCall.html">SPRecentCall</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE006didEndD11FromGateway010withRecentD4Item10completionyAA9SPGatewayC_AA08SPRecentD0CySbctF"></a>
+                    <a name="//apple_ref/swift/Method/callKitManager(didEndCallFromGateway:withRecentCallItem:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE006didEndD11FromGateway010withRecentD4Item10completionyAA9SPGatewayC_AA08SPRecentD0CySbctF">callKitManager(didEndCallFromGateway:withRecentCallItem:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">callKitManager</span><span class="p">(</span><span class="n">didEndCallFromGateway</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="n">withRecentCallItem</span> <span class="nv">recentItem</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPRecentCall.html">SPRecentCall</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE0018didConnectOutgoingD11FromGateway4with10completionyAA9SPGatewayC_AA8SPNumberCySbctF"></a>
+                    <a name="//apple_ref/swift/Method/callKitManager(didConnectOutgoingCallFromGateway:with:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE0018didConnectOutgoingD11FromGateway4with10completionyAA9SPGatewayC_AA8SPNumberCySbctF">callKitManager(didConnectOutgoingCallFromGateway:with:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">callKitManager</span><span class="p">(</span><span class="n">didConnectOutgoingCallFromGateway</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="n">with</span> <span class="nv">caller</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPNumber.html">SPNumber</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE018didChangeHeldState02onD4From10completionySb_AA9SPGatewayCySbctF"></a>
+                    <a name="//apple_ref/swift/Method/callKitManager(didChangeHeldState:onCallFrom:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE018didChangeHeldState02onD4From10completionySb_AA9SPGatewayCySbctF">callKitManager(didChangeHeldState:onCallFrom:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">callKitManager</span><span class="p">(</span><span class="n">didChangeHeldState</span> <span class="nv">isOnHold</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">onCallFrom</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE018didChangeMuteState02onD4From10completionySb_AA9SPGatewayCySbctF"></a>
+                    <a name="//apple_ref/swift/Method/callKitManager(didChangeMuteState:onCallFrom:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE018didChangeMuteState02onD4From10completionySb_AA9SPGatewayCySbctF">callKitManager(didChangeMuteState:onCallFrom:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">callKitManager</span><span class="p">(</span><span class="n">didChangeMuteState</span> <span class="nv">isMuted</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">onCallFrom</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE012didEnterDTMF02onD4From10completionySS_AA9SPGatewayCySbctF"></a>
+                    <a name="//apple_ref/swift/Method/callKitManager(didEnterDTMF:onCallFrom:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit04CallC15ManagerDelegateP04callcE012didEnterDTMF02onD4From10completionySS_AA9SPGatewayCySbctF">callKitManager(didEnterDTMF:onCallFrom:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">callKitManager</span><span class="p">(</span><span class="n">didEnterDTMF</span> <span class="nv">digits</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">onCallFrom</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Display%20Error%20as%20Local%20Notification"></a>
+                <a name="//apple_ref/swift/Section/Display Error as Local Notification" class="dashAnchor"></a>
+                <a href="#/Display%20Error%20as%20Local%20Notification">
+                  <h3 class="section-name">Display Error as Local Notification</h3>
+                </a>
+              </div>
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC21sendErrorNotification3forys0F0_p_tF"></a>
+                    <a name="//apple_ref/swift/Method/sendErrorNotification(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC21sendErrorNotification3forys0F0_p_tF">sendErrorNotification(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendErrorNotification</span><span class="p">(</span><span class="k">for</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/User%20access%20control"></a>
+                <a name="//apple_ref/swift/Section/User access control" class="dashAnchor"></a>
+                <a href="#/User%20access%20control">
+                  <h3 class="section-name">User access control</h3>
+                </a>
+              </div>
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@M@SIMplePhoneKit@objc(cs)SPManager(im)isAuthetificatedWithCompletion:"></a>
+                    <a name="//apple_ref/swift/Method/isAuthetificated(completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SIMplePhoneKit@objc(cs)SPManager(im)isAuthetificatedWithCompletion:">isAuthetificated(completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">isAuthetificated</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">loggedIn</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Recent%20Calls"></a>
+                <a name="//apple_ref/swift/Section/Recent Calls" class="dashAnchor"></a>
+                <a href="#/Recent%20Calls">
+                  <h3 class="section-name">Recent Calls</h3>
+                </a>
+              </div>
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC14getRecentCallsSayAA12SPRecentCallCGSgyF"></a>
+                    <a name="//apple_ref/swift/Method/getRecentCalls()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC14getRecentCallsSayAA12SPRecentCallCGSgyF">getRecentCalls()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getRecentCalls</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Classes/SPRecentCall.html">SPRecentCall</a></span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC16deleteRecentCallyyAA08SPRecentG0CF"></a>
+                    <a name="//apple_ref/swift/Method/deleteRecentCall(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC16deleteRecentCallyyAA08SPRecentG0CF">deleteRecentCall(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">deleteRecentCall</span><span class="p">(</span><span class="n">_</span> <span class="nv">call</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPRecentCall.html">SPRecentCall</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@M@SIMplePhoneKit@objc(cs)SPManager(im)getCountOfUnseenRecentCalls"></a>
+                    <a name="//apple_ref/swift/Method/getCountOfUnseenRecentCalls()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SIMplePhoneKit@objc(cs)SPManager(im)getCountOfUnseenRecentCalls">getCountOfUnseenRecentCalls()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">getCountOfUnseenRecentCalls</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Chats"></a>
+                <a name="//apple_ref/swift/Section/Chats" class="dashAnchor"></a>
+                <a href="#/Chats">
+                  <h3 class="section-name">Chats</h3>
+                </a>
+              </div>
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC11getAllChats10completionyySayAA6SPChatCGSg_s5Error_pSgtc_tF"></a>
+                    <a name="//apple_ref/swift/Method/getAllChats(completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC11getAllChats10completionyySayAA6SPChatCGSg_s5Error_pSgtc_tF">getAllChats(completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getAllChats</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">chats</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SPChat.html">SPChat</a></span><span class="p">]?,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC10deleteChat_10completionyAA6SPChatC_ys5Error_pSgctF"></a>
+                    <a name="//apple_ref/swift/Method/deleteChat(_:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC10deleteChat_10completionyAA6SPChatC_ys5Error_pSgctF">deleteChat(_:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">deleteChat</span><span class="p">(</span><span class="n">_</span> <span class="nv">chat</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPChat.html">SPChat</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC14addSampleChatsyyF"></a>
+                    <a name="//apple_ref/swift/Method/addSampleChats()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC14addSampleChatsyyF">addSampleChats()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addSampleChats</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC7sendSMS_2in10completionyAA9SPMessageC_AA6SPChatCys5Error_pSgctF"></a>
+                    <a name="//apple_ref/swift/Method/sendSMS(_:in:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC7sendSMS_2in10completionyAA9SPMessageC_AA6SPChatCys5Error_pSgctF">sendSMS(_:in:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendSMS</span><span class="p">(</span><span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPMessage.html">SPMessage</a></span><span class="p">,</span> <span class="k">in</span> <span class="nv">chat</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPChat.html">SPChat</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Voicemail"></a>
+                <a name="//apple_ref/swift/Section/Voicemail" class="dashAnchor"></a>
+                <a href="#/Voicemail">
+                  <h3 class="section-name">Voicemail</h3>
+                </a>
+              </div>
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC13getVoicemailsSayAA11SPVoicemailCGSgyF"></a>
+                    <a name="//apple_ref/swift/Method/getVoicemails()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC13getVoicemailsSayAA11SPVoicemailCGSgyF">getVoicemails()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getVoicemails</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Classes/SPVoicemail.html">SPVoicemail</a></span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC20markVoicemailAsHeardyyAA11SPVoicemailCF"></a>
+                    <a name="//apple_ref/swift/Method/markVoicemailAsHeard(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC20markVoicemailAsHeardyyAA11SPVoicemailCF">markVoicemailAsHeard(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">markVoicemailAsHeard</span><span class="p">(</span><span class="n">_</span> <span class="nv">voicemail</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPVoicemail.html">SPVoicemail</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC22markVoicemailAsUnheardyyAA11SPVoicemailCF"></a>
+                    <a name="//apple_ref/swift/Method/markVoicemailAsUnheard(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC22markVoicemailAsUnheardyyAA11SPVoicemailCF">markVoicemailAsUnheard(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">markVoicemailAsUnheard</span><span class="p">(</span><span class="n">_</span> <span class="nv">voicemail</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPVoicemail.html">SPVoicemail</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@M@SIMplePhoneKit@objc(cs)SPManager(im)getCountOfUnheardVoicemails"></a>
+                    <a name="//apple_ref/swift/Method/getCountOfUnheardVoicemails()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SIMplePhoneKit@objc(cs)SPManager(im)getCountOfUnheardVoicemails">getCountOfUnheardVoicemails()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">getCountOfUnheardVoicemails</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC15deleteVoicemail6withId10completionySS_yyctF"></a>
+                    <a name="//apple_ref/swift/Method/deleteVoicemail(withId:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC15deleteVoicemail6withId10completionySS_yyctF">deleteVoicemail(withId:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">deleteVoicemail</span><span class="p">(</span><span class="n">withId</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC19addSampleVoicemailsyyF"></a>
+                    <a name="//apple_ref/swift/Method/addSampleVoicemails()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC19addSampleVoicemailsyyF">addSampleVoicemails()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addSampleVoicemails</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Settings"></a>
+                <a name="//apple_ref/swift/Section/Settings" class="dashAnchor"></a>
+                <a href="#/Settings">
+                  <h3 class="section-name">Settings</h3>
+                </a>
+              </div>
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC18changeUserPassword3new3old10completionySS_SSySb_s5Error_pSgtctF"></a>
+                    <a name="//apple_ref/swift/Method/changeUserPassword(new:old:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC18changeUserPassword3new3old10completionySS_SSySb_s5Error_pSgtctF">changeUserPassword(new:old:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">changeUserPassword</span><span class="p">(</span><span class="nv">new</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">old</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC11getUserData10completionyySDyS2SGSg_s5Error_pSgtc_tF"></a>
+                    <a name="//apple_ref/swift/Method/getUserData(completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC11getUserData10completionyySDyS2SGSg_s5Error_pSgtc_tF">getUserData(completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getUserData</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">user</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">String</span><span class="p">]?,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC14getAllGateways10completionyySayAA9SPGatewayCGSg_s5Error_pSgtc_tF"></a>
+                    <a name="//apple_ref/swift/Method/getAllGateways(completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC14getAllGateways10completionyySayAA9SPGatewayCGSg_s5Error_pSgtc_tF">getAllGateways(completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getAllGateways</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">]?,</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC10getGateway8withImei10completionySS_yAA9SPGatewayCSg_s5Error_pSgtctF"></a>
+                    <a name="//apple_ref/swift/Method/getGateway(withImei:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC10getGateway8withImei10completionySS_yAA9SPGatewayCSg_s5Error_pSgtctF">getGateway(withImei:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getGateway</span><span class="p">(</span><span class="n">withImei</span> <span class="nv">imei</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">?,</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC17updateGatewayName_2of10completionySS_AA9SPGatewayCys5Error_pSgctF"></a>
+                    <a name="//apple_ref/swift/Method/updateGatewayName(_:of:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC17updateGatewayName_2of10completionySS_AA9SPGatewayCys5Error_pSgctF">updateGatewayName(_:of:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">updateGatewayName</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">of</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC18updateGatewayColor_2of10completionySo7UIColorC_AA9SPGatewayCys5Error_pSgctF"></a>
+                    <a name="//apple_ref/swift/Method/updateGatewayColor(_:of:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC18updateGatewayColor_2of10completionySo7UIColorC_AA9SPGatewayCys5Error_pSgctF">updateGatewayColor(_:of:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">updateGatewayColor</span><span class="p">(</span><span class="n">_</span> <span class="nv">color</span><span class="p">:</span> <span class="kt">UIColor</span><span class="p">,</span> <span class="n">of</span> <span class="nv">gateway</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPGateway.html">SPGateway</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Just%20for%20testing%20purposes%20(Will%20be%20deleted)"></a>
+                <a name="//apple_ref/swift/Section/Just for testing purposes (Will be deleted)" class="dashAnchor"></a>
+                <a href="#/Just%20for%20testing%20purposes%20(Will%20be%20deleted)">
+                  <h3 class="section-name">Just for testing purposes (Will be deleted)</h3>
+                </a>
+              </div>
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC13addRecentCallyyAA08SPRecentG0CF"></a>
+                    <a name="//apple_ref/swift/Method/addRecentCall(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC13addRecentCallyyAA08SPRecentG0CF">addRecentCall(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addRecentCall</span><span class="p">(</span><span class="n">_</span> <span class="nv">call</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPRecentCall.html">SPRecentCall</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC12addVoicemailyyAA11SPVoicemailCF"></a>
+                    <a name="//apple_ref/swift/Method/addVoicemail(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC12addVoicemailyyAA11SPVoicemailCF">addVoicemail(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addVoicemail</span><span class="p">(</span><span class="n">_</span> <span class="nv">voicemail</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPVoicemail.html">SPVoicemail</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC18getiCloudSyncStateSbSgyF"></a>
+                    <a name="//apple_ref/swift/Method/getiCloudSyncState()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC18getiCloudSyncStateSbSgyF">getiCloudSyncState()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getiCloudSyncState</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC18setiCloudSyncState_10completionySb_ySb_AA8APIErrorOSgtctF"></a>
+                    <a name="//apple_ref/swift/Method/setiCloudSyncState(_:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC18setiCloudSyncState_10completionySb_ySb_AA8APIErrorOSgtctF">setiCloudSyncState(_:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setiCloudSyncState</span><span class="p">(</span><span class="n">_</span> <span class="nv">newState</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Enums/APIError.html">APIError</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC13getAllDevices10completionyySb_SayAA8SPDeviceCGSgAA8APIErrorOSgtc_tF"></a>
+                    <a name="//apple_ref/swift/Method/getAllDevices(completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC13getAllDevices10completionyySb_SayAA8SPDeviceCGSgAA8APIErrorOSgtc_tF">getAllDevices(completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getAllDevices</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">devices</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SPDevice.html">SPDevice</a></span><span class="p">]?,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Enums/APIError.html">APIError</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/s:14SIMplePhoneKit9SPManagerC6revoke6device10completionyAA8SPDeviceC_ySb_AA8APIErrorOSgtctF"></a>
+                    <a name="//apple_ref/swift/Method/revoke(device:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SIMplePhoneKit9SPManagerC6revoke6device10completionyAA8SPDeviceC_ySb_AA8APIErrorOSgtctF">revoke(device:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">revoke</span><span class="p">(</span><span class="nv">device</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPDevice.html">SPDevice</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Enums/APIError.html">APIError</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Push%20notification%20related"></a>
+                <a name="//apple_ref/swift/Section/Push notification related" class="dashAnchor"></a>
+                <a href="#/Push%20notification%20related">
+                  <h3 class="section-name">Push notification related</h3>
+                </a>
+              </div>
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@M@SIMplePhoneKit@objc(cs)SPManager(im)receivedPushDeviceToken:completion:"></a>
+                    <a name="//apple_ref/swift/Method/receivedPushDeviceToken(_:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SIMplePhoneKit@objc(cs)SPManager(im)receivedPushDeviceToken:completion:">receivedPushDeviceToken(_:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">receivedPushDeviceToken</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">gotRevoked</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Obj-C%20related"></a>
+                <a name="//apple_ref/swift/Section/Obj-C related" class="dashAnchor"></a>
+                <a href="#/Obj-C%20related">
+                  <h3 class="section-name">Obj-C related</h3>
+                </a>
+              </div>
+              <ul class='item-container'>
+                <li class="item">
+                  <div class="item-heading">
+                    <code>
+                    <a name="/c:@M@SIMplePhoneKit@objc(cs)SPManager(cm)sharedInstance"></a>
+                    <a name="//apple_ref/swift/Method/sharedInstance()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SIMplePhoneKit@objc(cs)SPManager(cm)sharedInstance">sharedInstance()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h5>Declaration</h5>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">sharedInstance</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">SPManager</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class='footer'>
+      <p>© 2019 <a class="link" href="https://github.com/lukaskuster" target="_blank" rel="external">Lukas Kuster</a>. All rights reserved.</p>
+      <p>Generated by <a class='link' href='https://github.com/realm/jazzy' target='_blank' rel='external'>jazzy ♪♫ v0.9.5</a>, a <a class='link' href='http://realm.io' target='_blank' rel='external'>Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

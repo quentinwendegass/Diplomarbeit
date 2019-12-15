@@ -1,0 +1,34 @@
+# Documentation
+
+## Projektbeschreibung / Aufgabenstellung
+
+Bei unserem Miniprojekt handelt es sich um einen Teil unserer zukünftigen Diplomarbeit. Hierbei soll ein Gerät entwickelt werden, welches mit einer SIM-Karte ausgestattet ist und im Mobilfunknetz eingeloggt ist, außerdem ist dieses auch noch mit dem Internet über ein lokales Netzwerk verbunden (entweder über WiFi oder Ethernet). Mittels Client-Apps welche für Desktop (Mac, Windows, Linux), sowie Mobil-Geräte (vorerst nur iOS) entwickelt werden, kann man sich dann mit diesem Gerät verbinden. Dies ermöglicht dem Nutzer über die im Gerät befindliche SIM-Karte Anrufe zu tätigen/empfangen, sowie Nachrichten zu versenden/empfangen. Dabei muss dieser mit dem Client-Gerät nur eine aufrechte stabile Internet-Verbindung in einem beliebigen Netzwerk weltweit haben. Dies ermöglicht es zum Beispiel Roaming-Gebühren auf Auslandsreisen zu umgehen, vor allem für Vielreisende interessant. Dabei ist die Telefonnummer durchgehend erreichbar, sollte über keine Client-Anwendung angenommen werden, wird auf eine virtuelle Sprachbox weitergeleitet welche anschließend über alle Client-Anwendungen erreichbar ist.
+
+Als Miniprojekt behandeln den Verbindungsaufbau zwischen den Clients und des Geräts. Dabei stellt sich das technische Problem das die beiden Geräte in zwei unterschiedlichen privaten Netzwerken hinter zwei verschiedenen NATs liegen. Dafür nutzen wir sogenanntes "hole-punching", dabei werden die beiden Geräte über einen Server (von uns Rendezvous-Server genannt) vermittelt. Danach kann eine direkte Verbindung zwischen den beiden Geräten herstellen und Sprachdaten, sowie andere Informationen, direkt übertragen. Dies erspart uns hohen Datenfluss über den dritten öffentlich-zugänglichen Server, da nur die Vermittlung und nicht die komplette Übertragung über diesen erfolgt.
+
+Grundsätzlich teilen wir das Miniprojekt in zwei Teile: die Tunnelaufbau-Phase und die Client-Client-Vermittlungs-Phase. In der ersten Phase werden wir versuchen eine einfache Verbindung zwischen zwei Geräten in zwei verschiedenen getrennten Netzwerken über "UDP hole-punching" herzustellen. Dies erfolgt Client-, wie auch Serverseitig, in Python. Danach wird dieses Programm erweitert, das es mehrere Nutzer, darunter mehrere SIM-Geräte sowie mehrere Clients, gleichzeitig unterstützt. Dadurch wird die serverseitige Infrastruktur des Rendezvous-Servers für die Diplomarbeit geschaffen.
+
+___
+
+## PSP-Diagram
+![PSP-Diagram](PSP.png)
+
+___
+
+## PdSP-Diagram
+![PdSP-Diagram](PdSP.png)
+
+___
+
+## Arbeitspakete
+![Arbeitspakete](Arbeitspakete.png)
+
+___
+
+## Grant-Diagram
+![Grant-Diagram](GANTT-Diagramm.png)
+
+
+## Sonstiges
+
+Webapp to open PSP-Diagram.xml -> [draw.io](https://www.draw.io/ "draw.io")

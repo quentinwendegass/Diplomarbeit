@@ -1,0 +1,394 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>gateway.networking.signaling &#8212; gatewayw 0.2.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for gateway.networking.signaling</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">import</span> <span class="nn">attr</span>
+<span class="kn">from</span> <span class="nn">aioice</span> <span class="kn">import</span> <span class="n">Candidate</span>
+<span class="kn">from</span> <span class="nn">aiortc</span> <span class="kn">import</span> <span class="n">RTCSessionDescription</span>
+<span class="kn">from</span> <span class="nn">aiortc.rtcicetransport</span> <span class="kn">import</span> <span class="n">candidate_from_aioice</span>
+<span class="kn">from</span> <span class="nn">websockets</span> <span class="kn">import</span> <span class="n">WebSocketClientProtocol</span>
+
+<span class="kn">from</span> <span class="nn">gateway.utils</span> <span class="kn">import</span> <span class="n">logger</span><span class="p">,</span> <span class="n">AnsiEscapeSequence</span>
+
+
+<div class="viewcode-block" id="AuthenticationError"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.signaling.AuthenticationError">[docs]</a><span class="k">class</span> <span class="nc">AuthenticationError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="from_ice_candidate"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.signaling.from_ice_candidate">[docs]</a><span class="k">def</span> <span class="nf">from_ice_candidate</span><span class="p">(</span><span class="n">candidate</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">attr</span><span class="o">.</span><span class="n">asdict</span><span class="p">(</span><span class="n">candidate</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="to_ice_candidate"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.signaling.to_ice_candidate">[docs]</a><span class="k">def</span> <span class="nf">to_ice_candidate</span><span class="p">(</span><span class="n">ice</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">Candidate</span><span class="o">.</span><span class="n">from_sdp</span><span class="p">(</span><span class="n">ice</span><span class="p">)</span>
+    <span class="n">candidate</span> <span class="o">=</span> <span class="n">candidate_from_aioice</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">candidate</span><span class="o">.</span><span class="n">sdpMid</span> <span class="o">=</span> <span class="s1">&#39;audio&#39;</span>
+    <span class="k">return</span> <span class="n">candidate</span></div>
+
+
+<div class="viewcode-block" id="authenticate"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.signaling.authenticate">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">role</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">gateway</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Send the authentication event to the signaling server</span>
+
+<span class="sd">    :param socket: websocket client</span>
+<span class="sd">    :param role: rule of the connection (offer, answer)</span>
+<span class="sd">    :param username: username of the client</span>
+<span class="sd">    :param password: password of the client</span>
+<span class="sd">    :type socket: object</span>
+<span class="sd">    :type role: Role</span>
+<span class="sd">    :type username: str</span>
+<span class="sd">    :type password: str</span>
+<span class="sd">    :return: nothing</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Check parameter types</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">WebSocketClientProtocol</span><span class="p">):</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Socket must be of type WebSocketClientProtocol!&#39;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">raise</span> <span class="n">error</span>
+
+    <span class="c1"># Authenticate request</span>
+    <span class="c1"># Must contain username and password</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;event&#39;</span><span class="p">:</span> <span class="s1">&#39;authenticate&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+        <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
+        <span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">role</span><span class="p">),</span>
+        <span class="s1">&#39;gateway&#39;</span><span class="p">:</span> <span class="n">gateway</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Send the request to the signaling server</span>
+    <span class="k">await</span> <span class="n">socket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+
+    <span class="c1"># Get the response and parse the json string</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">socket</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Check if the right response arrived</span>
+    <span class="k">if</span> <span class="s1">&#39;event&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span> <span class="ow">or</span> <span class="s1">&#39;authenticated&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">&#39;Event or authenticated is missing in response: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;ArgumentError&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">error</span>
+    <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;authenticate&#39;</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Event should be authenticate! Event: &#39;</span> <span class="o">+</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">])</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;EventError(authenticate)&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">error</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;authenticated&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="s1">&#39;error&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="n">AuthenticationError</span><span class="p">(</span><span class="s1">&#39;Authentication was not successful: &#39;</span> <span class="o">+</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="n">AuthenticationError</span><span class="p">(</span><span class="s1">&#39;Authentication was not successful: &#39;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;AuthenticationError&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">error</span></div>
+
+
+<div class="viewcode-block" id="resv_ice_candidate"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.signaling.resv_ice_candidate">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">resv_ice_candidate</span><span class="p">(</span><span class="n">socket</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Waits for the socket to send an ice candidate.</span>
+
+<span class="sd">    :param socket: websocket client</span>
+<span class="sd">    :return: tuple of error and ice candidate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Check parameter types</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">WebSocketClientProtocol</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Socket must be of type WebSocketClientProtocol!&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Get the event from the server</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">socket</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Check if the right response arrived</span>
+    <span class="k">if</span> <span class="s1">&#39;event&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span> <span class="ow">or</span> <span class="s1">&#39;ice&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">&#39;Event or ice is missing in response: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;ArgumentError&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">error</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">socket</span>
+    <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;sendIce&#39;</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Event should be sendIce! Event: &#39;</span> <span class="o">+</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">])</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;EventError(sendIce)&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">error</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">socket</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;Received ice candidate:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">AnsiEscapeSequence</span><span class="o">.</span><span class="n">HEADER</span>
+                 <span class="o">+</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;ice&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">AnsiEscapeSequence</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">)</span>
+
+    <span class="c1"># Create a RTCIceCandidate object an return it</span>
+    <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">to_ice_candidate</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;ice&#39;</span><span class="p">]),</span> <span class="n">socket</span></div>
+
+
+<div class="viewcode-block" id="recv_answer"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.signaling.recv_answer">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">recv_answer</span><span class="p">(</span><span class="n">socket</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the ice description answer of the peer client</span>
+
+<span class="sd">    :param socket: websocket client</span>
+<span class="sd">    :type socket: object</span>
+<span class="sd">    :return: answer RTCSessionDescription</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Check parameter types</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">WebSocketClientProtocol</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Socket must be of type WebSocketClientProtocol!&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Get the answer event from the server</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">socket</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Check if the right response arrived</span>
+    <span class="k">if</span> <span class="s1">&#39;event&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span> <span class="ow">or</span> <span class="s1">&#39;sdp&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">&#39;Event or sdp is missing in response: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;ArgumentError&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">error</span>
+    <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;answer&#39;</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Event should be answer! Event: &#39;</span> <span class="o">+</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">])</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;EventError(answer)&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">error</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;Received answer with sdp:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">AnsiEscapeSequence</span><span class="o">.</span><span class="n">HEADER</span>
+                 <span class="o">+</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;sdp&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">AnsiEscapeSequence</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">)</span>
+
+    <span class="c1"># Create a RTCSessionDescription object an return it</span>
+    <span class="k">return</span> <span class="n">RTCSessionDescription</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">],</span> <span class="n">sdp</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;sdp&#39;</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="recv_offer"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.signaling.recv_offer">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">recv_offer</span><span class="p">(</span><span class="n">socket</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the ice description offer of the peer client</span>
+
+<span class="sd">    :param socket: websocket client</span>
+<span class="sd">    :type socket: object</span>
+<span class="sd">    :return: offer RTCSessionDescription</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Check parameter type</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">WebSocketClientProtocol</span><span class="p">):</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Socket must be of type WebSocketClientProtocol!&#39;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">raise</span> <span class="n">error</span>
+
+    <span class="c1"># Get the offer event from the server</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">socket</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">socket</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Check if the right response arrived</span>
+    <span class="k">if</span> <span class="s1">&#39;event&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span> <span class="ow">or</span> <span class="s1">&#39;sdp&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">&#39;Event or sdp is missing in response: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;ArgumentError&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">error</span>
+    <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;offer&#39;</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Event should be offer! Event: &#39;</span> <span class="o">+</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">])</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;EventError(offer)&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">error</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;Received offer with sdp:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">AnsiEscapeSequence</span><span class="o">.</span><span class="n">HEADER</span>
+                 <span class="o">+</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;sdp&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">AnsiEscapeSequence</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">)</span>
+
+    <span class="c1"># Create a RTCSessionDescription object an return it</span>
+    <span class="k">return</span> <span class="n">RTCSessionDescription</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">],</span> <span class="n">sdp</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;sdp&#39;</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="send_answer"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.signaling.send_answer">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">send_answer</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">desc</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Send the answer ice description to the peer client.</span>
+
+<span class="sd">    :param socket: websocket client</span>
+<span class="sd">    :param desc: RTCSessionDescription answer</span>
+<span class="sd">    :type socket: object</span>
+<span class="sd">    :type desc: object</span>
+<span class="sd">    :return: nothing</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Check parameter types</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">desc</span><span class="p">,</span> <span class="n">RTCSessionDescription</span><span class="p">):</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Description must be of type RTCSessionDescription!&#39;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">raise</span> <span class="n">error</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">WebSocketClientProtocol</span><span class="p">):</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Socket must be of type WebSocketClientProtocol!&#39;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">raise</span> <span class="n">error</span>
+
+    <span class="c1"># Answer event request</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;event&#39;</span><span class="p">:</span> <span class="s1">&#39;answer&#39;</span><span class="p">,</span>
+        <span class="c1"># message contains the description object as a json string</span>
+        <span class="s1">&#39;sdp&#39;</span><span class="p">:</span> <span class="n">desc</span><span class="o">.</span><span class="n">sdp</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Send the request to the server</span>
+    <span class="k">await</span> <span class="n">socket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;Send answer with sdp:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">AnsiEscapeSequence</span><span class="o">.</span><span class="n">HEADER</span>
+                 <span class="o">+</span> <span class="n">desc</span><span class="o">.</span><span class="n">sdp</span> <span class="o">+</span> <span class="n">AnsiEscapeSequence</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="send_offer"><a class="viewcode-back" href="../../../gateway.networking.html#gateway.networking.signaling.send_offer">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">send_offer</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">desc</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Send the offer ice description to the peer client.</span>
+
+<span class="sd">    :param socket: websocket client</span>
+<span class="sd">    :param desc: RTCSessionDescription offer</span>
+<span class="sd">    :type socket: object</span>
+<span class="sd">    :type desc: object</span>
+<span class="sd">    :return: nothing</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Check parameter types</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">desc</span><span class="p">,</span> <span class="n">RTCSessionDescription</span><span class="p">):</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Description must be of type RTCSessionDescription!&#39;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">raise</span> <span class="n">error</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">WebSocketClientProtocol</span><span class="p">):</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Socket must be of type WebSocketClientProtocol!&#39;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">raise</span> <span class="n">error</span>
+
+    <span class="c1"># Wait for the start event, that indicates the peer client connected to the server</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">socket</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">socket</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Check if the right response arrived</span>
+    <span class="k">if</span> <span class="s1">&#39;event&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">&#39;Event is missing in response: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;ArgumentError&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">error</span>
+
+    <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;start&#39;</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Event should be start! Event: &#39;</span> <span class="o">+</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">])</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;EventError(start)&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">error</span>
+
+    <span class="c1"># Offer event request</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;event&#39;</span><span class="p">:</span> <span class="s1">&#39;offer&#39;</span><span class="p">,</span>
+        <span class="c1"># sdp contains the description object as a json string</span>
+        <span class="s1">&#39;sdp&#39;</span><span class="p">:</span> <span class="n">desc</span><span class="o">.</span><span class="n">sdp</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Send the request to the server</span>
+    <span class="k">await</span> <span class="n">socket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Signaling&#39;</span><span class="p">,</span> <span class="s1">&#39;Send offer with sdp:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">AnsiEscapeSequence</span><span class="o">.</span><span class="n">HEADER</span>
+                 <span class="o">+</span> <span class="n">desc</span><span class="o">.</span><span class="n">sdp</span> <span class="o">+</span> <span class="n">AnsiEscapeSequence</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">gatewayw</a></h1>
+
+
+
+<p class="blurb">Main program for the SIMplePhone Gateway.</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=quentinwendegass&repo=Diplomarbeit&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../gateway.html">gateway package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pcmlib.html">pcmlib</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Quentin Wendegass.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,465 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>gateway.io.sim800.sim800 &#8212; gatewayw 0.2.0 documentation</title>
+    <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for gateway.io.sim800.sim800</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+
+<span class="kn">from</span> <span class="nn">pyee</span> <span class="kn">import</span> <span class="n">EventEmitter</span>
+
+<span class="kn">from</span> <span class="nn">serial</span> <span class="kn">import</span> <span class="n">Serial</span>
+
+<span class="kn">from</span> <span class="nn">gateway.io.sim800.serial_loop</span> <span class="kn">import</span> <span class="n">SerialLoop</span>
+<span class="kn">from</span> <span class="nn">gateway.io.sim800.at_command</span> <span class="kn">import</span> <span class="n">ATCommand</span>
+<span class="kn">from</span> <span class="nn">gateway.io.sim800.at_event</span> <span class="kn">import</span> <span class="n">ATEvent</span>
+<span class="kn">from</span> <span class="nn">gateway.io.sim800.at_parser</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">gateway.io.sim800.at_response</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">gateway.utils</span> <span class="kn">import</span> <span class="n">clear_str</span>
+
+
+<div class="viewcode-block" id="Sim800Error"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800Error">[docs]</a><span class="k">class</span> <span class="nc">Sim800Error</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<span class="k">def</span> <span class="nf">_raise_event_error</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">Sim800Error</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">error_message</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">event</span>
+
+
+<div class="viewcode-block" id="Sim800"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800">[docs]</a><span class="k">class</span> <span class="nc">Sim800</span><span class="p">(</span><span class="n">EventEmitter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sim800 processes AT-Commands over the serial interface</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serial_port</span><span class="o">=</span><span class="s1">&#39;/dev/serial0&#39;</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Construct a new &#39;SerialLoop&#39; object.</span>
+
+<span class="sd">        :param serial_port: port of the serial interface</span>
+<span class="sd">        :param debug: indicates debug mode</span>
+<span class="sd">        :type serial_port: str</span>
+<span class="sd">        :type debug: bool</span>
+<span class="sd">        :return: returns nothing</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">scheduler</span><span class="o">=</span><span class="n">asyncio</span><span class="o">.</span><span class="n">run_coroutine_threadsafe</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="n">loop</span><span class="p">)</span>
+
+        <span class="c1"># Create serial loop</span>
+        <span class="n">serial</span> <span class="o">=</span> <span class="n">Serial</span><span class="p">(</span><span class="n">serial_port</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="mi">9600</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serial_loop</span> <span class="o">=</span> <span class="n">SerialLoop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serial</span><span class="p">,</span> <span class="n">debug</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">serial_loop</span><span class="o">.</span><span class="n">echo</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># Set the event loop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_event_loop</span> <span class="o">=</span> <span class="n">loop</span>
+
+        <span class="c1"># Start the thread</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serial_loop</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="n">debug</span>
+
+<div class="viewcode-block" id="Sim800.close"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Closes the SerialLoop thread</span>
+
+<span class="sd">        :return: returns nothing</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">serial_loop</span><span class="o">.</span><span class="n">running</span><span class="o">.</span><span class="n">set</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Sim800.write"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.write">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Writes the command to the serial interface.</span>
+
+<span class="sd">        :param command: command that should be written to the serial interface</span>
+<span class="sd">        :return: returns the response event if no callback is set on the command</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">event</span> <span class="o">=</span> <span class="n">ATEvent</span><span class="p">(</span><span class="n">command</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serial_loop</span><span class="o">.</span><span class="n">command_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+
+        <span class="k">await</span> <span class="n">event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">event</span></div>
+
+<div class="viewcode-block" id="Sim800.answer_call"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.answer_call">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">answer_call</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Answer an incoming call.</span>
+
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;ATA</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;AnswerCall&#39;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.hang_up_call"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.hang_up_call">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">hang_up_call</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Disconnect the current call.</span>
+
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;ATH</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;HangUpCall&#39;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.dial_number"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.dial_number">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">dial_number</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Call a participant.</span>
+
+<span class="sd">        :param number: phone number of the participant</span>
+<span class="sd">        :type number: str</span>
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Remove all \n and \r from the number</span>
+        <span class="n">number</span> <span class="o">=</span> <span class="n">clear_str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;ATD</span><span class="si">{}</span><span class="s1">;</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">number</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;DialNumber&#39;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.send_sms"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.send_sms">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_sms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Send a sms to a participant.</span>
+
+<span class="sd">        :param number: phone number of the participant</span>
+<span class="sd">        :param text: message of the sms</span>
+<span class="sd">        :type number: str</span>
+<span class="sd">        :type text: str</span>
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Remove all \n\r from the strings and add &lt;ctrl-Z/ESC&gt; after the message of the sms</span>
+        <span class="n">number</span> <span class="o">=</span> <span class="n">clear_str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">clear_str</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\x1A</span><span class="s1">&#39;</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+CMGS=&quot;</span><span class="si">{}</span><span class="s1">&quot;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">number</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;SendSMS&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">text</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.request_unread_sms"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.request_unread_sms">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">request_unread_sms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read all unread sms.</span>
+
+<span class="sd">        Event Data: [SMS]</span>
+
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+CMGL=&quot;REC UNREAD&quot;</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ListUnreadSMS&#39;</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="n">SMSListParser</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.request_all_sms"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.request_all_sms">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">request_all_sms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read all sms.</span>
+
+<span class="sd">        Event Data: [SMS]</span>
+
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+CMGL=&quot;ALL&quot;</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ListAllSMS&#39;</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="n">SMSListParser</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.set_sms_mode"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.set_sms_mode">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">set_sms_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the sms mode.</span>
+
+<span class="sd">        Mode can be either 0 or 1</span>
+<span class="sd">        0: PDU mode</span>
+<span class="sd">        1: Text mode</span>
+
+<span class="sd">        :param mode: sms mode</span>
+<span class="sd">        :type mode: int</span>
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+CMGF=</span><span class="si">{}</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mode</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;SMSMode&#39;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.power_off"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.power_off">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">power_off</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Shutdown the sim-module.</span>
+
+<span class="sd">        Mode can be either 0 or 1</span>
+<span class="sd">        0: Power off urgently</span>
+<span class="sd">        1: Normal power off</span>
+
+<span class="sd">        :param mode: mode for power off</span>
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+CPOWD=</span><span class="si">{}</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mode</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;PowerOff&#39;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.request_signal_quality"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.request_signal_quality">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">request_signal_quality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the signal quality.</span>
+
+<span class="sd">        Event Data: SignalQuality</span>
+
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+CSQ</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;SignalQuality&#39;</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="n">SignalQualityParser</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.reset_default_configuration"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.reset_default_configuration">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">reset_default_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reset sim-module to default configuration.</span>
+
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;ATZ</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ResetDefaultConfiguration&#39;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.enter_pin"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.enter_pin">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">enter_pin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pin</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enter the sim card pin.</span>
+
+<span class="sd">        :param pin: pin, puk or puk2</span>
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+CPIN=</span><span class="si">{}</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pin</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;EnterPIN&#39;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.request_pin_status"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.request_pin_status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">request_pin_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the pin status of the sim card.</span>
+
+<span class="sd">        Event Data: PinStatus</span>
+
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+CPIN?</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;PINStatus&#39;</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="n">PinStatusParser</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.request_imei"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.request_imei">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">request_imei</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the imei.</span>
+
+<span class="sd">        Event Data: IMEI</span>
+
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+GSN</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;IMEI&#39;</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="n">IMEIParser</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.request_network_status"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.request_network_status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">request_network_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reads the current network status.</span>
+
+<span class="sd">        Event Data: NetworkStatus</span>
+
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+CREG?</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;NetworkStatus&#39;</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="n">NetworkStatusParser</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.set_echo_mode"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.set_echo_mode">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">set_echo_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the echo mode.</span>
+
+<span class="sd">        0: Echo mode off</span>
+<span class="sd">        1: Echo mode on</span>
+
+<span class="sd">        :param mode: echo mode</span>
+<span class="sd">        :type mode: int</span>
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">event</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;ATE</span><span class="si">{}</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mode</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;EchoMode&#39;</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">event</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">serial_loop</span><span class="o">.</span><span class="n">echo</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">event</span></div>
+
+<div class="viewcode-block" id="Sim800.set_caller_identification_mode"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.set_caller_identification_mode">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">set_caller_identification_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the caller identification mode.</span>
+
+<span class="sd">        0: No caller identification</span>
+<span class="sd">        1: Get caller identification on ring</span>
+
+<span class="sd">        :param mode: caller identification mode</span>
+<span class="sd">        :type mode: int</span>
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">event</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+CLIP=</span><span class="si">{}</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mode</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;CallerIdentificationMode&#39;</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">event</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">serial_loop</span><span class="o">.</span><span class="n">caller_identification</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">event</span></div>
+
+<div class="viewcode-block" id="Sim800.set_error_mode"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.set_error_mode">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">set_error_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the error mode.</span>
+
+<span class="sd">        0: Disable CME error</span>
+<span class="sd">        1: Enable CME error with error codes</span>
+<span class="sd">        2: Enable CME error with verbose message</span>
+
+<span class="sd">        :param mode: error mode</span>
+<span class="sd">        :type mode: int</span>
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+CMEE=</span><span class="si">{}</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mode</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ErrorMode&#39;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.request_subscriber_number"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.request_subscriber_number">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">request_subscriber_number</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the subscriber number and additional parameters.</span>
+
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+CNUM</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;SubscriberNumber&#39;</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="n">SubscriberNumberParser</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.request_imsi"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.request_imsi">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">request_imsi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the operator imsi.</span>
+
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+CIMI</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;IMSI&#39;</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="n">IMEIParser</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.transmit_dtmf_tone"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.transmit_dtmf_tone">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">transmit_dtmf_tone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tone</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Transmits one ore more dtmf tones.</span>
+<span class="sd">        Supported characters: 0-9, #,*, A-D</span>
+
+<span class="sd">        :param tone: tones</span>
+<span class="sd">        :type tone: str</span>
+<span class="sd">        :return: event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+VTS=&quot;</span><span class="si">{}</span><span class="s1">&quot;</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tone</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;DTMFTone&#39;</span><span class="p">))</span></div>
+
+    <span class="c1"># TODO: Fill in the right parameter for n in hold_call and resume_call</span>
+
+<div class="viewcode-block" id="Sim800.hold_call"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.hold_call">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">hold_call</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+CHLD=n</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;CallHold&#39;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.resume_call"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.resume_call">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">resume_call</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ATCommand</span><span class="p">(</span><span class="s1">&#39;AT+CHLD=n</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;CallResume&#39;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Sim800.setup"><a class="viewcode-back" href="../../../../gateway.io.sim800.html#gateway.io.sim800.sim800.Sim800.setup">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Setup the module to return error codes and set sms commands to text mode.</span>
+
+<span class="sd">        :return: nothing</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">pin</span><span class="p">:</span>
+                <span class="n">event</span> <span class="o">=</span> <span class="n">_raise_event_error</span><span class="p">(</span><span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">request_pin_status</span><span class="p">())</span>
+                <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">data</span> <span class="o">!=</span> <span class="n">PINStatus</span><span class="o">.</span><span class="n">Ready</span><span class="p">:</span>
+                    <span class="n">_raise_event_error</span><span class="p">(</span><span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">enter_pin</span><span class="p">(</span><span class="n">pin</span><span class="p">))</span>
+
+            <span class="n">_raise_event_error</span><span class="p">(</span><span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_sms_mode</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+            <span class="n">_raise_event_error</span><span class="p">(</span><span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_error_mode</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+            <span class="n">_raise_event_error</span><span class="p">(</span><span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_caller_identification_mode</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">except</span> <span class="n">Sim800Error</span><span class="p">:</span>
+            <span class="k">raise</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">gatewayw</a></h1>
+
+
+
+<p class="blurb">Main program for the SIMplePhone Gateway.</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=quentinwendegass&repo=Diplomarbeit&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gateway.html">gateway package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pcmlib.html">pcmlib</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Quentin Wendegass.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

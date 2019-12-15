@@ -1,0 +1,150 @@
+
+File: "../gateway/__init__.py"
+ - File is empty
+ Needed: 0; Found: 0; Missing: 0; Coverage: 0.0%
+
+File: "../gateway/networking/caller.py"
+ - No module docstring
+ - No docstring for `CallStreamTrack.__init__`
+ - No docstring for `CallError`
+ - No docstring for `Caller.ice_connection_state_change`
+ - No docstring for `Caller.ice_gathering_state_change`
+ - No docstring for `Caller.signaling_state_change`
+ - No docstring for `Caller.on_track`
+ Needed: 16; Found: 9; Missing: 7; Coverage: 56.2%
+
+File: "../gateway/networking/sse.py"
+ - No module docstring
+ Needed: 7; Found: 6; Missing: 1; Coverage: 85.7%
+
+File: "../gateway/networking/signaling.py"
+ - No module docstring
+ - No docstring for `AuthenticationError`
+ - No docstring for `from_ice_candidate`
+ - No docstring for `to_ice_candidate`
+ Needed: 4; Found: 0; Missing: 4; Coverage: 0.0%
+
+File: "../gateway/networking/api.py"
+ - No module docstring
+ - No docstring for `API.get_gateway`
+ - No docstring for `API.get_gateways`
+ - No docstring for `API.post_gateway`
+ - No docstring for `API.delete_gateway`
+ - No docstring for `API.put_gateway`
+ - No docstring for `API.get_user`
+ - No docstring for `API.put_user`
+ - No docstring for `API.push_notification`
+ - No docstring for `API.broadcast_notification`
+ - No docstring for `API.push_incoming_call`
+ - No docstring for `API.push_error`
+ Needed: 17; Found: 5; Missing: 12; Coverage: 29.4%
+
+File: "../gateway/networking/__init__.py"
+ - No module docstring
+ Needed: 1; Found: 0; Missing: 1; Coverage: 0.0%
+
+File: "../gateway/io/__init__.py"
+ - No module docstring
+ Needed: 1; Found: 0; Missing: 1; Coverage: 0.0%
+
+File: "../gateway/io/pcm/register_control.py"
+ - No module docstring
+ - No docstring for `address`
+ - No docstring for `address.decorator`
+ - No docstring for `null_bits`
+ - No docstring for `null_bits.decorator`
+ - No docstring for `Register`
+ - No docstring for `Register.write`
+ - No docstring for `Register.read`
+ - No docstring for `ModeControlRegister`
+ Needed: 9; Found: 0; Missing: 9; Coverage: 0.0%
+
+File: "../gateway/io/pcm/__init__.py"
+ - No module docstring
+ Needed: 1; Found: 0; Missing: 1; Coverage: 0.0%
+
+File: "../gateway/io/sim800/at_parser.py"
+ - No module docstring
+ - No docstring for `ParseError`
+ - No docstring for `SMSListParser.parse`
+ - No docstring for `NetworkStatusParser.parse`
+ - No docstring for `SignalQualityParser.parse`
+ - No docstring for `PinStatusParser.parse`
+ - No docstring for `IMEIParser.parse`
+ - No docstring for `SubscriberNumberParser.parse`
+ - No docstring for `IMSIParser.parse`
+ - No docstring for `CallerIdentificationParser.parse`
+ Needed: 20; Found: 10; Missing: 10; Coverage: 50.0%
+
+File: "../gateway/io/sim800/at_event.py"
+ - No module docstring
+ Needed: 6; Found: 5; Missing: 1; Coverage: 83.3%
+
+File: "../gateway/io/sim800/at_response.py"
+ - No module docstring
+ - No docstring for `ATResponse`
+ - No docstring for `SMS.Status`
+ Needed: 14; Found: 11; Missing: 3; Coverage: 78.6%
+
+File: "../gateway/io/sim800/at_command.py"
+ - No module docstring
+ Needed: 4; Found: 3; Missing: 1; Coverage: 75.0%
+
+File: "../gateway/io/sim800/sim800.py"
+ - No module docstring
+ - No docstring for `Sim800Error`
+ - No docstring for `_raise_event_error`
+ Needed: 6; Found: 3; Missing: 3; Coverage: 50.0%
+
+File: "../gateway/io/sim800/__init__.py"
+ - No module docstring
+ Needed: 1; Found: 0; Missing: 1; Coverage: 0.0%
+
+File: "../gateway/io/sim800/serial_loop.py"
+ - No module docstring
+ - No docstring for `SerialError`
+ - No docstring for `EchoError`
+ - No docstring for `SerialLoop._get_event_from_queue`
+ Needed: 12; Found: 8; Missing: 4; Coverage: 66.7%
+
+File: "../gateway/utils/logger.py"
+ - No module docstring
+ - No docstring for `Logger.__init__`
+ - No docstring for `Logger.use_config_options`
+ Needed: 13; Found: 10; Missing: 3; Coverage: 76.9%
+
+File: "../gateway/utils/singleton.py"
+ - No module docstring
+ - No docstring for `Singleton.__init__`
+ - No docstring for `Singleton.__call__`
+ Needed: 4; Found: 1; Missing: 3; Coverage: 25.0%
+
+File: "../gateway/utils/scheduler.py"
+ - No module docstring
+ Needed: 12; Found: 11; Missing: 1; Coverage: 91.7%
+
+File: "../gateway/utils/__init__.py"
+ - No module docstring
+ - No docstring for `use_config_file`
+ Needed: 2; Found: 0; Missing: 2; Coverage: 0.0%
+
+File: "../gateway/core/config.py"
+ - No module docstring
+ - No docstring for `get_config`
+ - No docstring for `get_apn_config_path`
+ - No docstring for `set_config`
+ Needed: 4; Found: 0; Missing: 4; Coverage: 0.0%
+
+File: "../gateway/core/main.py"
+ - No module docstring
+ - No docstring for `start`
+ Needed: 2; Found: 0; Missing: 2; Coverage: 0.0%
+
+File: "../gateway/core/__init__.py"
+ - No module docstring
+ Needed: 1; Found: 0; Missing: 1; Coverage: 0.0%
+
+
+Overall statistics for 23 files (1 files are empty):
+Docstrings needed: 157; Docstrings found: 82; Docstrings missing: 75
+Total docstring coverage: 52.2%;  Grade: Not bad
