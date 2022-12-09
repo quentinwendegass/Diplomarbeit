@@ -17,7 +17,7 @@
     "apn": "^2.2.0",
     "basic-auth": "^2.0.1",
     "body-parser": "^1.18.3",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "md5": "^2.2.1",
     "mongoose": "^5.3.4",
     "mongoose-unique-validator": "^2.0.2",
